@@ -1,2 +1,2 @@
-run test
+floorcasting_test
 //Solo corre test sin paredes ni texturas definidas
