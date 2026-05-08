@@ -1,0 +1,5 @@
+sprite floor -> 'floor.png'
+sprite ceiling -> 'ceiling.png'
+
+test
+//Solo carga de recursos, sin mapa definido y sin carga de paredes
