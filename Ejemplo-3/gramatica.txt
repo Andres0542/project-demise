@@ -1,5 +1,0 @@
-sprite walls -> 'walls.png'
-sprite floor -> 'floor.png'
-sprite ceiling -> 'ceiling.png'
-
-resource mapa -> 'mapa.algo'
