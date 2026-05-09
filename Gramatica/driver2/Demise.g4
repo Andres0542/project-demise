@@ -5,15 +5,15 @@ program
     ;
 
 statement
-    : spriteDeclaration
-    | filterDeclaration
-    | testCommand
+    : spriteDeclaration    // Prioridad 1
+    | filterDeclaration    // Prioridad 2
+    | testCommand         // Prioridad 3
     | comment
     | NEWLINE
     ;
 
 spriteDeclaration
-    : SPRITE IDENTIFIER ARROW STRING_LITERAL
+    : SPRITE SPRITE_TYPE ARROW STRING_LITERAL
     ;
 
 filterDeclaration
@@ -42,6 +42,7 @@ comment
 
 
 // Keywords
+SPRITE_TYPE         : 'floor'| 'ceiling'|'wall';
 SPRITE              : 'sprite';
 FILTER              : 'filter';
 FLOORCASTING_TEST   : 'floorcasting_test';

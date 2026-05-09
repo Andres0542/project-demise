@@ -75,7 +75,7 @@ def new_frame(posx, posy, rot, frame, sky, floor, hres, halfvres, mod, maph, siz
                 c = mapc[int(x)%(size-1)][int(y)%(size-1)] #Colores en las paredes
                 #c = shade*np.ones(3)
                 for k in range(h*2):
-                    frame[i][halfvres-h+k] = shade*wall[xx][int(yy[k])] * c
+                    frame[i][halfvres-h+k] = shade*wall[xx][int(yy[k])] #* c
                 break
             else:
                 frame[i][halfvres*2-j-1] = shade*floor[xx][yy]

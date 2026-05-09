@@ -32,6 +32,7 @@ class SemanticVisitor(DemiseVisitor):
         return 'error'
 
     def visitTestCommand(self, ctx: DemiseParser.TestCommandContext):
+        #self.visitChildren(ctx)  # Primero visitamos a los hijos para procesar el comando
         if ctx.FLOORCASTING_TEST():
             Floorcasting().main()
             test_name = "floorcasting.py"
@@ -47,3 +48,26 @@ class SemanticVisitor(DemiseVisitor):
         print(f"hola — test command encontrado: {test_name}")
 
         return self.visitChildren(ctx)
+    
+    def visitSpriteDeclaration(self, ctx: DemiseParser.SpriteDeclarationContext):
+        # 1. Extraer datos del contexto (asegúrate de que los nombres coincidan con tu .g4)
+        sprite_type = ctx.SPRITE_TYPE().getText()
+        # Limpiamos las comillas del path (ej: "res://hero.png" -> res://hero.png)
+        path = ctx.STRING_LITERAL().getText().strip("'\"")
+        line = ctx.start.line # Obtenemos la línea para el reporte de errores
+
+        try:
+            # 2. Registrar en la tabla de símbolos
+            self.symtab.declare_sprite(sprite_type, path, line)
+        
+            # 3. Feedback visual (opcional)
+            print(f"✅ Sprite registrado exitosamente:")
+            print(f"   Nombre: {sprite_type} | Path: {path}")
+
+        except SemanticError as e:
+            # 4. Manejo de errores
+            return self._error(e.message, ctx)
+
+        return self.visitChildren(ctx)
+
+        

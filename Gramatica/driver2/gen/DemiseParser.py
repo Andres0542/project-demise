@@ -10,21 +10,21 @@ else:
 
 def serializedATN():
     return [
-        4,1,15,52,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,16,52,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,1,0,5,0,18,8,0,10,0,12,0,21,9,0,1,0,1,0,1,1,1,1,1,1,1,
         1,1,1,3,1,30,8,1,1,2,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,
         1,4,1,4,1,5,1,5,1,6,1,6,1,7,1,7,1,7,0,0,8,0,2,4,6,8,10,12,14,0,1,
-        1,0,3,6,48,0,19,1,0,0,0,2,29,1,0,0,0,4,31,1,0,0,0,6,36,1,0,0,0,8,
+        1,0,4,7,48,0,19,1,0,0,0,2,29,1,0,0,0,4,31,1,0,0,0,6,36,1,0,0,0,8,
         43,1,0,0,0,10,45,1,0,0,0,12,47,1,0,0,0,14,49,1,0,0,0,16,18,3,2,1,
         0,17,16,1,0,0,0,18,21,1,0,0,0,19,17,1,0,0,0,19,20,1,0,0,0,20,22,
         1,0,0,0,21,19,1,0,0,0,22,23,5,0,0,1,23,1,1,0,0,0,24,30,3,4,2,0,25,
-        30,3,6,3,0,26,30,3,12,6,0,27,30,3,14,7,0,28,30,5,14,0,0,29,24,1,
+        30,3,6,3,0,26,30,3,12,6,0,27,30,3,14,7,0,28,30,5,15,0,0,29,24,1,
         0,0,0,29,25,1,0,0,0,29,26,1,0,0,0,29,27,1,0,0,0,29,28,1,0,0,0,30,
-        3,1,0,0,0,31,32,5,1,0,0,32,33,5,11,0,0,33,34,5,7,0,0,34,35,5,12,
-        0,0,35,5,1,0,0,0,36,37,5,2,0,0,37,38,5,8,0,0,38,39,3,8,4,0,39,40,
-        5,10,0,0,40,41,3,10,5,0,41,42,5,9,0,0,42,7,1,0,0,0,43,44,5,11,0,
-        0,44,9,1,0,0,0,45,46,5,11,0,0,46,11,1,0,0,0,47,48,7,0,0,0,48,13,
-        1,0,0,0,49,50,5,13,0,0,50,15,1,0,0,0,2,19,29
+        3,1,0,0,0,31,32,5,2,0,0,32,33,5,1,0,0,33,34,5,8,0,0,34,35,5,13,0,
+        0,35,5,1,0,0,0,36,37,5,3,0,0,37,38,5,9,0,0,38,39,3,8,4,0,39,40,5,
+        11,0,0,40,41,3,10,5,0,41,42,5,10,0,0,42,7,1,0,0,0,43,44,5,12,0,0,
+        44,9,1,0,0,0,45,46,5,12,0,0,46,11,1,0,0,0,47,48,7,0,0,0,48,13,1,
+        0,0,0,49,50,5,14,0,0,50,15,1,0,0,0,2,19,29
     ]
 
 class DemiseParser ( Parser ):
@@ -37,11 +37,11 @@ class DemiseParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'sprite'", "'filter'", "'floorcasting_test'", 
+    literalNames = [ "<INVALID>", "<INVALID>", "'sprite'", "'filter'", "'floorcasting_test'", 
                      "'raycasting_test'", "'raycasting_maze_test'", "'reflexing_floor'", 
                      "'->'", "'('", "')'", "','" ]
 
-    symbolicNames = [ "<INVALID>", "SPRITE", "FILTER", "FLOORCASTING_TEST", 
+    symbolicNames = [ "<INVALID>", "SPRITE_TYPE", "SPRITE", "FILTER", "FLOORCASTING_TEST", 
                       "RAYCASTING_TEST", "RAYCASTING_MAZE_TEST", "REFLEXING_FLOOR", 
                       "ARROW", "LPAREN", "RPAREN", "COMMA", "IDENTIFIER", 
                       "STRING_LITERAL", "COMMENT", "NEWLINE", "WS" ]
@@ -59,21 +59,22 @@ class DemiseParser ( Parser ):
                    "filterName", "target", "testCommand", "comment" ]
 
     EOF = Token.EOF
-    SPRITE=1
-    FILTER=2
-    FLOORCASTING_TEST=3
-    RAYCASTING_TEST=4
-    RAYCASTING_MAZE_TEST=5
-    REFLEXING_FLOOR=6
-    ARROW=7
-    LPAREN=8
-    RPAREN=9
-    COMMA=10
-    IDENTIFIER=11
-    STRING_LITERAL=12
-    COMMENT=13
-    NEWLINE=14
-    WS=15
+    SPRITE_TYPE=1
+    SPRITE=2
+    FILTER=3
+    FLOORCASTING_TEST=4
+    RAYCASTING_TEST=5
+    RAYCASTING_MAZE_TEST=6
+    REFLEXING_FLOOR=7
+    ARROW=8
+    LPAREN=9
+    RPAREN=10
+    COMMA=11
+    IDENTIFIER=12
+    STRING_LITERAL=13
+    COMMENT=14
+    NEWLINE=15
+    WS=16
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -131,7 +132,7 @@ class DemiseParser ( Parser ):
             self.state = 19
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 24702) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 49404) != 0):
                 self.state = 16
                 self.statement()
                 self.state = 21
@@ -203,27 +204,27 @@ class DemiseParser ( Parser ):
             self.state = 29
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [1]:
+            if token in [2]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 24
                 self.spriteDeclaration()
                 pass
-            elif token in [2]:
+            elif token in [3]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 25
                 self.filterDeclaration()
                 pass
-            elif token in [3, 4, 5, 6]:
+            elif token in [4, 5, 6, 7]:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 26
                 self.testCommand()
                 pass
-            elif token in [13]:
+            elif token in [14]:
                 self.enterOuterAlt(localctx, 4)
                 self.state = 27
                 self.comment()
                 pass
-            elif token in [14]:
+            elif token in [15]:
                 self.enterOuterAlt(localctx, 5)
                 self.state = 28
                 self.match(DemiseParser.NEWLINE)
@@ -250,8 +251,8 @@ class DemiseParser ( Parser ):
         def SPRITE(self):
             return self.getToken(DemiseParser.SPRITE, 0)
 
-        def IDENTIFIER(self):
-            return self.getToken(DemiseParser.IDENTIFIER, 0)
+        def SPRITE_TYPE(self):
+            return self.getToken(DemiseParser.SPRITE_TYPE, 0)
 
         def ARROW(self):
             return self.getToken(DemiseParser.ARROW, 0)
@@ -288,7 +289,7 @@ class DemiseParser ( Parser ):
             self.state = 31
             self.match(DemiseParser.SPRITE)
             self.state = 32
-            self.match(DemiseParser.IDENTIFIER)
+            self.match(DemiseParser.SPRITE_TYPE)
             self.state = 33
             self.match(DemiseParser.ARROW)
             self.state = 34
@@ -518,7 +519,7 @@ class DemiseParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 47
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 120) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 240) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

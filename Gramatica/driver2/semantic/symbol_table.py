@@ -1,63 +1,34 @@
 from .errors import SemanticError 
-
+import os
 class Symbol:
-    def __init__(self, name, type_, scope, line):
-        self.name= name
-        self.type_= type_ # 'int' | 'float' | 'bool' | 'string'
-        self.scope= scope
-        self.line= line 
-        self.initialized = False
-        self.used = False
-
-    def __repr__(self):
-        return f"Symbol({self.name}: {self.type_} @ {self.scope}, line {self.line})"
-
+    def __init__(self, name, path, scope, line):
+        self.name = name    # El identificador (ej. "Player")
+        self.path = path    # La ruta del recurso (ej. "res://player.png")
+        self.scope = scope
+        self.line = line
+        self.used = False   # Para el reporte de variables no usadas
     
 class SymbolTable:
     def __init__(self):
-        # { scope_name -> { var_name -> Symbol } }
-        self._table: dict[str, dict[str, Symbol]] = {}
-        self._scope_stack: list[str] = ['global']
+        self._table = {}
+        self._scope_stack = ['global']
+        # Diccionario para registrar sprites: { nombre_sprite: path }
+        self.sprites = {} 
 
-    # -- ámbito
-    @property
-    def current_scope(self) -> str:
-        return self._scope_stack[-1]
+    def declare_sprite(self, name: str, path: str, line: int):
+        # Validación 1: Nombre duplicado
+        if name in self.sprites:
+            raise SemanticError(f"El sprite '{name}' ya ha sido declarado.", line)
         
-    def enter_scope(self, name: str):
-        self._scope_stack.append(name)
-        self._table.setdefault(name, {})
-    
-    def exit_scope(self):
-        self._scope_stack.pop()
+        if not os.path.exists(path):
+            raise SemanticError(f"Error de Recurso: El archivo en '{path}' no existe.", line)
 
-    # -- inserción
-    def declare(self, name: str, type_: str, line: int) -> Symbol:
-        scope = self.current_scope
-        if name in self._table.setdefault(scope, {}):
-            raise SemanticError(
-                f"Variable '{name}' ya declarada en ámbito '{scope}'", line)
-        sym = Symbol(name, type_, scope, line)
-        self._table[scope][name] = sym
-        return sym
+        # Validación 2: Path duplicado (Opcional, pero recomendado)
+        if path in [s['path'] for s in self.sprites.values()]:
+            raise SemanticError(f"La ruta '{path}' ya está en uso por otro sprite.", line)
 
-    # -- búsqueda (recorre la pila de ámbitos)
-    def lookup(self, name: str) -> Symbol | None:
-        for scope in reversed(self._scope_stack):
-            if name in self._table.get(scope, {}):
-                return self._table[scope][name]
-        return None
-    
-    # -- reporte de variables no usadas
-    def unused_warnings(self) -> list[str]:
-        warns = []
-        for scope_syms in self._table.values():
-            for sym in scope_syms.values():
-                if not sym.used:
-                    warns.append(
-                    f"ADVERTENCIA: '{sym.name}' declarada en línea {sym.line} nunca fue usada.")
-        return warns
-        
-        
-        
-
+        # Registro
+        self.sprites[name] = {
+            "path": path,
+            "line": line
+        }

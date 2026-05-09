@@ -1,0 +1,87 @@
+// Sprite declaration:
+
+sprite wall -> 'wall.jpg' //Declara los sprites para las paredes, que son asignados automaticamente a estas para cuando se renderize el espacio (Debe insertarse la direccion de un archivo de imagen)
+sprite floor -> 'floor.jpg'// La misma funcion de arriba pero con el piso
+sprite sky -> 'sky.jpg'// Lo mismo que la primera funcion pero con el cielo
+
+//Siempre se tiene que confirmar la existencia del archivo, de lo contrario lanza error
+
+// filter_sprites:
+
+filter(hotline,ceiling) //Se asigna un filtro a las texturas puestas filter(filtro,ceiling)
+filter(bloody_moon,ceiling) //Se asigna un filtro a las texturas puestas filter(filtro,ceiling)
+filter(green_waste,floor) //Se asigna un filtro a las texturas puestas filter(filtro,ceiling)
+
+// npcDeclaration
+
+npc imp -> 'Imp.jpg' //Se asignan los sprites de movimiento de un enemigo
+npc Cacodemon -> 'Cacodemon.jpg' //Se asignan los sprites de movimiento de un enemigo
+npc Leo -> 'Leo.jpg' //Se asignan los sprites de movimiento de un enemigo
+
+//Siempre se tiene que confirmar la existencia del archivo, de lo contrario lanza error
+musicDeclaration
+
+music -> 'Numb.mp3'//Musica de fondo que sonara en los niveles (sonara en loop infinito)
+
+//Siempre se tiene que confirmar la existencia del archivo, de lo contrario lanza error
+// Declaracion del mapa
+
+//0 es territorio en donde puede moverse el jugador, 1 es una pared, y 2 es la salida
+map ->
+[1 1 1 1 1 1 1 1 1 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 2 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]; //Declaracion de mapa mediante matriz
+//Se tiene que poner ; al final, de lo contrario lanza error
+//Lightning
+
+lightning -> 50 //Iluminacion del nivel
+lightning -> 75/ /Iluminacion del nivel
+lightning -> 100 //Iluminacion del nivel
+//El rango de lightning es de 0 hasta 100
+//UIDeclaration
+UI -> 'DoomUI.png' //Imagen de UI que se usara para el juego (Se toma como referencia la interfaz de Doom I y Doom II)
+
+//Siempre se tiene que confirmar la existencia del archivo, de lo contrario lanza error
+
+//npc Positioning
+
+imp -> (3,3) //Posicionamiento de enemigo en mapa (se realiza poniendo un 3 en la matriz. Si el 3 esta ocupado, se usa un numero sucesor
+Cacodemon -> (2,2) //En este caso, en la matriz se insertara un 2
+
+//Se tiene que asegurar que las coordenadas esten en el rango de la matriz de mapa, de lo contrario lanza error
+
+//test Command
+
+floorcasting_test // Test predefinido de floorcasting
+raycasting_test // Test predefinido de raycasting
+raycasting_maze_test // Test predefinido de un laberinto con raycasting
+
+//Weapon declaration
+
+weapon shotgun -> 'Shotgun.png' //Declaracion de sprites de arma
+weapon BFG6000 -> 'BFG6000.png' //Declaracion de sprites de arma
+//Siempre se tiene que confirmar la existencia del archivo, de lo contrario lanza error
+
+//Weapong logic
+weapon shotgun -> 'Shotgun.png' 
+shotgun -> shotgun //Declaracion de comportamiento predefinido de arma (Disparara como escopeta)
+
+
+
+weapon shotgun -> 'BFG6000.png' 
+BFG6000 -> BFG6000 //Declaracion de comportamiento predefinido de arma (Disparara como BFG6000)
+
+//Las logicas de las armas van entre chainsaw,fists,pistol,shotgun,chaingun,rocket launcher, energy rifle y BFG6000, cualquier otro parametro fuera de eso debe lanzar error
+//Comments
+
+
+//This is a comment
+//Go fuck yourself
+//John Romero wants to kill all Chat GPTers
+
