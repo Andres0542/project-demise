@@ -1,0 +1,4 @@
+sprite floor -> 'floor.png'
+sprite ceiling -> 'ceiling.png'
+filter(hotline,ceiling)
+floorcasting_test

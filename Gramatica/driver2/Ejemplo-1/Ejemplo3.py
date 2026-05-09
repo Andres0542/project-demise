@@ -17,15 +17,19 @@ def main():
     posx, posy, rot = 0,0,0
     frame = np.random.uniform(0,1,(hres, halfvres*2, 3))
 
+    #Cielo
+    sky = pg.image.load("skybox.jpg") #.convert()
+    sky = pg.surfarray.array3d(pg.transform.scale(sky, (360, halfvres*2)))
+
+
     while running: #main game loop
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
-        frame[:, 0:halfvres] = [0.5, 0.7, 1.0]
         for i in range(hres):
             rot_i = rot + np.deg2rad(i/mod - 30)
             sin, cos, cos2 = np.sin(rot_i), np.cos(rot_i), np.cos(np.deg2rad(i/mod-30))
-            #frame[i] = sky[int(rot_i*180/np.pi)%360]
+            frame[i] = sky[int(rot_i*180/np.pi)%360]
             for j in range(halfvres):
                 n = (halfvres/(halfvres-j))/cos2
                 x , y = posx + cos*n, posy + sin*n

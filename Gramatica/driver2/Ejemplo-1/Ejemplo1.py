@@ -21,7 +21,7 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
-        frame[:, 0:halfvres] = [0.5, 0.7, 1.0]
+
         for i in range(hres):
             rot_i = rot + np.deg2rad(i/mod - 30)
             sin, cos, cos2 = np.sin(rot_i), np.cos(rot_i), np.cos(np.deg2rad(i/mod-30))
