@@ -1,0 +1,205 @@
+Esta gramatica describe la sintaxis completa utilizada en los archivos de 
+configuracion (.txt) de los ejemplos de Floorcasting y Raycasting.
+
+1. ESTRUCTURA GENERAL DEL PROGRAMA
+
+program ::= statement*
+
+statement ::= sprite_declaration
+            | filter_declaration
+            | settings_declaration
+            | test_command
+            | comment
+            | NEWLINE
+
+
+2. DECLARACIONES DE SPRITES (RECURSOS GRAFICOS)
+
+sprite_declaration ::= 'sprite' IDENTIFIER '->' STRING_LITERAL
+
+Descripcion:
+  - Define un recurso grafico (textura) que sera cargado en el motor
+  - IDENTIFIER: nombre del sprite (floor, ceiling, wall, skybox, etc.)
+  - STRING_LITERAL: ruta del archivo entre comillas simples
+
+Ejemplos:
+  sprite floor -> 'floor.png'
+  sprite ceiling -> 'ceiling.png'
+  sprite wall -> 'wall.png'
+  sprite skybox -> 'skybox.jpg'
+
+
+3. DECLARACIONES DE FILTROS
+
+
+filter_declaration ::= 'filter' '(' filter_name ',' target ')'
+
+filter_name ::= IDENTIFIER
+target ::= IDENTIFIER
+
+Descripcion:
+  - Aplica un filtro visual a un sprite especifico
+  - filter_name: nombre del filtro a aplicar (hotline, blur, etc.)
+  - target: sprite objetivo sobre el cual aplicar el filtro
+
+Ejemplos:
+  filter(hotline, ceiling)
+  filter(blur, floor)
+
+
+4. DECLARACIONES DE CONFIGURACION DEL MOTOR
+
+
+settings_declaration ::= 'settings' '(' setting_list ')'
+
+setting_list ::= setting_pair (',' setting_pair)*
+
+setting_pair ::= setting_name '=' setting_value
+
+setting_name ::= 'resolution' | 'fov' | 'fps'
+
+setting_value ::= INTEGER | FLOAT
+
+Descripcion:
+  - Configura parametros del motor 3D
+  - resolution: resolucion de la ventana (ancho x alto)
+  - fov: campo de vision en grados (30-120)
+  - fps: frames por segundo objetivo (30-120)
+
+Ejemplos:
+  settings(resolution=800x600, fov=60, fps=60)
+  settings(resolution=1024x768, fov=90)
+  settings(fov=75)
+
+
+5. COMANDOS DE PRUEBA
+
+
+test_command ::= 'floorcasting_test'
+               | 'raycasting_test'
+               | 'raycasting_maze_test'
+               | 'reflexing_floor'
+
+Descripcion:
+  - Comandos que ejecutan diferentes modos de prueba del motor
+
+Comandos disponibles:
+  - floorcasting_test: Prueba basica de renderizado de suelo/techo
+  - raycasting_test: Prueba basica de raycasting con paredes
+  - raycasting_maze_test: Prueba completa en un laberinto
+  - reflexing_floor: Activa efectos de reflexion en el suelo
+
+
+6. COMENTARIOS
+
+
+comment ::= '//' TEXT
+
+Descripcion:
+  - Comentarios de una sola linea que comienzan con '//'
+  - Se ignoran durante el procesamiento
+
+
+7. TOKENS LEXICOS
+
+
+IDENTIFIER ::= [a-zA-Z_][a-zA-Z0-9_]*
+
+STRING_LITERAL ::= "'" [^']* "'"
+
+INTEGER ::= [0-9]+
+
+FLOAT ::= [0-9]+ '.' [0-9]+
+
+NEWLINE ::= '\n' | '\r\n' | '\r'
+
+WHITESPACE ::= [ \t]+
+
+TEXT ::= [^\n\r]*
+
+
+8. REGLAS DE PRECEDENCIA Y ASOCIATIVIDAD
+
+
+- Las declaraciones se procesan secuencialmente de arriba hacia abajo
+- Los sprites deben declararse antes de ser referenciados en filtros
+- Los settings pueden aparecer en cualquier posicion
+- Los comandos de prueba se ejecutan despues de cargar todos los recursos
+- Los comentarios pueden aparecer en cualquier linea
+
+
+9. SEMANTICA Y VALIDACIONES
+
+
+Validaciones requeridas:
+  1. Los archivos de sprite referenciados deben existir
+  2. Los sprites referenciados en filtros deben estar previamente declarados
+  3. No se permiten declaraciones duplicadas de sprites con el mismo nombre
+  4. Solo se permite un comando de prueba por archivo de configuracion
+  5. Los nombres de filtros deben corresponder a filtros implementados
+  6. La resolucion debe estar en formato anchoxalto (ej: 800x600)
+  7. El FOV debe estar entre 30 y 120 grados
+  8. Los FPS deben estar entre 30 y 120
+
+Tipos de archivos soportados:
+  - Imagenes: .jpg, .jpeg, .png, .bmp
+
+
+10. EJEMPLOS COMPLETOS DE ARCHIVOS DE CONFIGURACION
+
+Ejemplo 1 (Floorcasting basico):
+-----------------------------------
+floorcasting_test
+//Solo corre test sin paredes ni texturas definidas
+
+Ejemplo 2 (Floorcasting con texturas):
+-----------------------------------
+sprite floor -> 'floor.png'
+sprite ceiling -> 'ceiling.png'
+
+floorcasting_test
+//Solo carga de recursos, sin mapa definido y sin carga de paredes
+
+Ejemplo 3 (Floorcasting con filtros):
+-----------------------------------
+sprite floor -> 'floor.png'
+sprite ceiling -> 'ceiling.png'
+filter(hotline, ceiling)
+floorcasting_test
+
+Ejemplo 4 (Floorcasting con configuracion):
+-----------------------------------
+sprite floor -> 'floor.png'
+sprite ceiling -> 'ceiling.png'
+
+settings(resolution=1024x768, fov=90, fps=60)
+floorcasting_test
+
+Ejemplo 5 (Raycasting basico):
+-----------------------------------
+raycasting_test
+
+Ejemplo 6 (Raycasting con configuracion):
+-----------------------------------
+sprite floor -> 'floor.png'
+sprite ceiling -> 'ceiling.png'
+sprite wall -> 'wall.png'
+
+settings(resolution=800x600, fov=60)
+raycasting_test
+
+Ejemplo 7 (Raycasting completo con laberinto):
+-----------------------------------
+sprite floor -> 'floor.png'
+sprite ceiling -> 'ceiling.png'
+sprite wall -> 'wall.png'
+
+settings(resolution=1200x800, fov=75, fps=60)
+reflexing_floor
+
+raycasting_maze_test
+//Prueba del proyecto en un laberinto
+
+
+FIN DE LA GRAMATICA
+
