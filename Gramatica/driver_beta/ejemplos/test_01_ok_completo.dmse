@@ -1,12 +1,12 @@
 // TEST 01 - Caso completamente válido
 // Resultado esperado: Análisis semántico OK, 0 errores, 0 advertencias
 
-sprite wall -> 'wall.jpg'
-sprite floor -> 'floor.jpg'
-sprite sky -> 'sky.jpg'
+sprite wall -> '/home/ubuntu/Documents/project-demise/Gramatica/driver_beta/ejemplos/wall.jpg'
+sprite floor -> '/home/ubuntu/Documents/project-demise/Gramatica/driver_beta/ejemplos/floor.jpg'
+sprite sky -> '/home/ubuntu/Documents/project-demise/Gramatica/driver_beta/ejemplos/skybox.jpg'
 
-filter(hotline, ceiling)
-filter(green_waste, floor)
+filter(green_goo, sky)
+filter(green_goo, floor)
 
 npc imp -> 'Imp.jpg'
 npc Cacodemon -> 'Cacodemon.jpg'
@@ -34,7 +34,7 @@ Cacodemon -> (2, 2)
 weapon shotgun -> 'Shotgun.png'
 weapon BFG6000 -> 'BFG6000.png'
 
-shotgun -> shotgun
-BFG6000 -> BFG6000
+shotgun -> shotgunL
+BFG6000 -> BFG6000L
 
 raycasting_test

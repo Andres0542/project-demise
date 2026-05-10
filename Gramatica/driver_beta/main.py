@@ -27,11 +27,11 @@ def main():
     else:
         print('Análisis semántico: OK')
     
-    warns = visitor.symtab.unused_warnings()
-    if warns:
-        print('\n=== ADVERTENCIAS ===')
-        for w in warns:
-            print(' ', w)
+    #warns = visitor.symtab.unused_warnings()
+    #if warns:
+        #print('\n=== ADVERTENCIAS ===')
+        #for w in warns:
+            #print(' ', w)
 
 # ejecutar main
 main()

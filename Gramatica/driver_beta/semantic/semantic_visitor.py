@@ -10,7 +10,6 @@ class SemanticVisitor(DemiseVisitor):
         self.errors: list[SemanticError] = []
 
     # ── Helper ────────────────────────────────────────────────────────────────
-
     def _error(self, error: SemanticError):
         """Registra un error semántico y lo imprime."""
         self.errors.append(error)
@@ -44,9 +43,13 @@ class SemanticVisitor(DemiseVisitor):
     # sí es un target válido de filter según la gramática de referencia.
 
     def visitFilter(self, ctx: DemiseParser.FilterContext):
-        identifiers = ctx.IDENTIFIER()
-        filter_name = identifiers[0].getText()
-        target      = identifiers[1].getText()
+        filter_name = ctx.FILTER_TYPE().getText()  # token ID, no IDENTIFIER
+        target      = ctx.SPRITE_TYPE().getText()  # token ID, no IDENT
+    	#filter_name = ctx.ID(0).getText()
+	    #target = ctx.ID(1).getText()
+        #identifiers = ctx.ID()
+        #filter_name = identifiers[0].getText()
+        #target      = identifiers[1].getText()
         line = ctx.start.line
 
         try:

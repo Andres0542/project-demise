@@ -29,7 +29,7 @@ spriteDeclaration
 
 // filter(hotline, sky)
 filter
-    : FILTER LPAREN ID COMMA ID RPAREN
+    : FILTER LPAREN FILTER_TYPE COMMA SPRITE_TYPE RPAREN
     ;
 
 // npc imp -> 'Imp.jpg'
@@ -91,13 +91,14 @@ testCommand
 SPRITE              : 'sprite';
 SPRITE_TYPE         : 'wall' | 'floor' | 'sky';
 FILTER              : 'filter';
+FILTER_TYPE         : 'hotline' | 'green_goo' | 'blue_label';
 NPC                 : 'npc';
 MUSIC               : 'music';
 MAP                 : 'map';
 LIGHTNING           : 'lightning';
 UI                  : 'UI';
 WEAPON              : 'weapon';
-WEAPON_LOGIC        : 'chainsaw' | 'fist' | 'pistol' | 'shotgun' | 'chaingun' | 'rocket_launcher' | 'energy_rifle' |'BFG6000' ;
+WEAPON_LOGIC        : 'chainsawL' | 'fistL' | 'pistolL' | 'shotgunL' | 'chaingunL' | 'rocket_launcherL' | 'energy_rifleL' |'BFG6000L' ;
 FLOORCASTING_TEST   : 'floorcasting_test';
 RAYCASTING_TEST     : 'raycasting_test';
 RAYCASTING_MAZE_TEST: 'raycasting_maze_test';
@@ -130,11 +131,9 @@ ID
 COMENTARIO
     : '//' ~[\r\n]*
     ;
-
-ESPACIO
-    : [\r\n]+
+ESPACIO 
+    : [\r\n]+ -> skip 
     ;
-
 WS
     : [ \t]+ -> skip
     ;

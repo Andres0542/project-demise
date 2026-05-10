@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,26,117,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,27,117,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         1,0,5,0,30,8,0,10,0,12,0,33,9,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,50,8,1,1,2,1,2,1,2,1,2,1,2,1,3,1,
@@ -19,32 +19,32 @@ def serializedATN():
         7,85,1,7,1,7,1,8,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,10,1,10,1,10,1,10,
         1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,
         1,13,1,13,1,13,0,0,14,0,2,4,6,8,10,12,14,16,18,20,22,24,26,0,1,1,
-        0,11,13,117,0,31,1,0,0,0,2,49,1,0,0,0,4,51,1,0,0,0,6,56,1,0,0,0,
+        0,12,14,117,0,31,1,0,0,0,2,49,1,0,0,0,4,51,1,0,0,0,6,56,1,0,0,0,
         8,63,1,0,0,0,10,68,1,0,0,0,12,72,1,0,0,0,14,81,1,0,0,0,16,89,1,0,
         0,0,18,93,1,0,0,0,20,97,1,0,0,0,22,105,1,0,0,0,24,110,1,0,0,0,26,
         114,1,0,0,0,28,30,3,2,1,0,29,28,1,0,0,0,30,33,1,0,0,0,31,29,1,0,
         0,0,31,32,1,0,0,0,32,34,1,0,0,0,33,31,1,0,0,0,34,35,5,0,0,1,35,1,
         1,0,0,0,36,50,3,4,2,0,37,50,3,12,6,0,38,50,3,8,4,0,39,50,3,20,10,
         0,40,50,3,10,5,0,41,50,3,22,11,0,42,50,3,24,12,0,43,50,3,6,3,0,44,
-        50,3,18,9,0,45,50,3,16,8,0,46,50,3,26,13,0,47,50,5,24,0,0,48,50,
-        5,25,0,0,49,36,1,0,0,0,49,37,1,0,0,0,49,38,1,0,0,0,49,39,1,0,0,0,
+        50,3,18,9,0,45,50,3,16,8,0,46,50,3,26,13,0,47,50,5,25,0,0,48,50,
+        5,26,0,0,49,36,1,0,0,0,49,37,1,0,0,0,49,38,1,0,0,0,49,39,1,0,0,0,
         49,40,1,0,0,0,49,41,1,0,0,0,49,42,1,0,0,0,49,43,1,0,0,0,49,44,1,
         0,0,0,49,45,1,0,0,0,49,46,1,0,0,0,49,47,1,0,0,0,49,48,1,0,0,0,50,
-        3,1,0,0,0,51,52,5,1,0,0,52,53,5,2,0,0,53,54,5,14,0,0,54,55,5,22,
-        0,0,55,5,1,0,0,0,56,57,5,3,0,0,57,58,5,15,0,0,58,59,5,23,0,0,59,
-        60,5,19,0,0,60,61,5,23,0,0,61,62,5,16,0,0,62,7,1,0,0,0,63,64,5,4,
-        0,0,64,65,5,23,0,0,65,66,5,14,0,0,66,67,5,22,0,0,67,9,1,0,0,0,68,
-        69,5,5,0,0,69,70,5,14,0,0,70,71,5,22,0,0,71,11,1,0,0,0,72,73,5,6,
-        0,0,73,75,5,14,0,0,74,76,3,14,7,0,75,74,1,0,0,0,76,77,1,0,0,0,77,
-        75,1,0,0,0,77,78,1,0,0,0,78,79,1,0,0,0,79,80,5,20,0,0,80,13,1,0,
-        0,0,81,83,5,17,0,0,82,84,5,21,0,0,83,82,1,0,0,0,84,85,1,0,0,0,85,
-        83,1,0,0,0,85,86,1,0,0,0,86,87,1,0,0,0,87,88,5,18,0,0,88,15,1,0,
-        0,0,89,90,5,7,0,0,90,91,5,14,0,0,91,92,5,21,0,0,92,17,1,0,0,0,93,
-        94,5,8,0,0,94,95,5,14,0,0,95,96,5,22,0,0,96,19,1,0,0,0,97,98,5,23,
-        0,0,98,99,5,14,0,0,99,100,5,15,0,0,100,101,5,21,0,0,101,102,5,19,
-        0,0,102,103,5,21,0,0,103,104,5,16,0,0,104,21,1,0,0,0,105,106,5,9,
-        0,0,106,107,5,23,0,0,107,108,5,14,0,0,108,109,5,22,0,0,109,23,1,
-        0,0,0,110,111,5,23,0,0,111,112,5,14,0,0,112,113,5,10,0,0,113,25,
+        3,1,0,0,0,51,52,5,1,0,0,52,53,5,2,0,0,53,54,5,15,0,0,54,55,5,23,
+        0,0,55,5,1,0,0,0,56,57,5,3,0,0,57,58,5,16,0,0,58,59,5,4,0,0,59,60,
+        5,20,0,0,60,61,5,2,0,0,61,62,5,17,0,0,62,7,1,0,0,0,63,64,5,5,0,0,
+        64,65,5,24,0,0,65,66,5,15,0,0,66,67,5,23,0,0,67,9,1,0,0,0,68,69,
+        5,6,0,0,69,70,5,15,0,0,70,71,5,23,0,0,71,11,1,0,0,0,72,73,5,7,0,
+        0,73,75,5,15,0,0,74,76,3,14,7,0,75,74,1,0,0,0,76,77,1,0,0,0,77,75,
+        1,0,0,0,77,78,1,0,0,0,78,79,1,0,0,0,79,80,5,21,0,0,80,13,1,0,0,0,
+        81,83,5,18,0,0,82,84,5,22,0,0,83,82,1,0,0,0,84,85,1,0,0,0,85,83,
+        1,0,0,0,85,86,1,0,0,0,86,87,1,0,0,0,87,88,5,19,0,0,88,15,1,0,0,0,
+        89,90,5,8,0,0,90,91,5,15,0,0,91,92,5,22,0,0,92,17,1,0,0,0,93,94,
+        5,9,0,0,94,95,5,15,0,0,95,96,5,23,0,0,96,19,1,0,0,0,97,98,5,24,0,
+        0,98,99,5,15,0,0,99,100,5,16,0,0,100,101,5,22,0,0,101,102,5,20,0,
+        0,102,103,5,22,0,0,103,104,5,17,0,0,104,21,1,0,0,0,105,106,5,10,
+        0,0,106,107,5,24,0,0,107,108,5,15,0,0,108,109,5,23,0,0,109,23,1,
+        0,0,0,110,111,5,24,0,0,111,112,5,15,0,0,112,113,5,11,0,0,113,25,
         1,0,0,0,114,115,7,0,0,0,115,27,1,0,0,0,4,31,49,77,85
     ]
 
@@ -58,18 +58,18 @@ class DemiseParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'sprite'", "<INVALID>", "'filter'", "'npc'", 
-                     "'music'", "'map'", "'lightning'", "'UI'", "'weapon'", 
-                     "<INVALID>", "'floorcasting_test'", "'raycasting_test'", 
+    literalNames = [ "<INVALID>", "'sprite'", "<INVALID>", "'filter'", "<INVALID>", 
+                     "'npc'", "'music'", "'map'", "'lightning'", "'UI'", 
+                     "'weapon'", "<INVALID>", "'floorcasting_test'", "'raycasting_test'", 
                      "'raycasting_maze_test'", "'->'", "'('", "')'", "'['", 
                      "']'", "','", "';'" ]
 
-    symbolicNames = [ "<INVALID>", "SPRITE", "SPRITE_TYPE", "FILTER", "NPC", 
-                      "MUSIC", "MAP", "LIGHTNING", "UI", "WEAPON", "WEAPON_LOGIC", 
-                      "FLOORCASTING_TEST", "RAYCASTING_TEST", "RAYCASTING_MAZE_TEST", 
-                      "ARROW", "LPAREN", "RPAREN", "LBRACKET", "RBRACKET", 
-                      "COMMA", "SEMICOLON", "INTEGER", "STRING_LITERAL", 
-                      "ID", "COMENTARIO", "ESPACIO", "WS" ]
+    symbolicNames = [ "<INVALID>", "SPRITE", "SPRITE_TYPE", "FILTER", "FILTER_TYPE", 
+                      "NPC", "MUSIC", "MAP", "LIGHTNING", "UI", "WEAPON", 
+                      "WEAPON_LOGIC", "FLOORCASTING_TEST", "RAYCASTING_TEST", 
+                      "RAYCASTING_MAZE_TEST", "ARROW", "LPAREN", "RPAREN", 
+                      "LBRACKET", "RBRACKET", "COMMA", "SEMICOLON", "INTEGER", 
+                      "STRING_LITERAL", "ID", "COMENTARIO", "ESPACIO", "WS" ]
 
     RULE_program = 0
     RULE_statement = 1
@@ -95,29 +95,30 @@ class DemiseParser ( Parser ):
     SPRITE=1
     SPRITE_TYPE=2
     FILTER=3
-    NPC=4
-    MUSIC=5
-    MAP=6
-    LIGHTNING=7
-    UI=8
-    WEAPON=9
-    WEAPON_LOGIC=10
-    FLOORCASTING_TEST=11
-    RAYCASTING_TEST=12
-    RAYCASTING_MAZE_TEST=13
-    ARROW=14
-    LPAREN=15
-    RPAREN=16
-    LBRACKET=17
-    RBRACKET=18
-    COMMA=19
-    SEMICOLON=20
-    INTEGER=21
-    STRING_LITERAL=22
-    ID=23
-    COMENTARIO=24
-    ESPACIO=25
-    WS=26
+    FILTER_TYPE=4
+    NPC=5
+    MUSIC=6
+    MAP=7
+    LIGHTNING=8
+    UI=9
+    WEAPON=10
+    WEAPON_LOGIC=11
+    FLOORCASTING_TEST=12
+    RAYCASTING_TEST=13
+    RAYCASTING_MAZE_TEST=14
+    ARROW=15
+    LPAREN=16
+    RPAREN=17
+    LBRACKET=18
+    RBRACKET=19
+    COMMA=20
+    SEMICOLON=21
+    INTEGER=22
+    STRING_LITERAL=23
+    ID=24
+    COMENTARIO=25
+    ESPACIO=26
+    WS=27
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -175,7 +176,7 @@ class DemiseParser ( Parser ):
             self.state = 31
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 58735610) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 117471210) != 0):
                 self.state = 28
                 self.statement()
                 self.state = 33
@@ -441,14 +442,14 @@ class DemiseParser ( Parser ):
         def LPAREN(self):
             return self.getToken(DemiseParser.LPAREN, 0)
 
-        def ID(self, i:int=None):
-            if i is None:
-                return self.getTokens(DemiseParser.ID)
-            else:
-                return self.getToken(DemiseParser.ID, i)
+        def FILTER_TYPE(self):
+            return self.getToken(DemiseParser.FILTER_TYPE, 0)
 
         def COMMA(self):
             return self.getToken(DemiseParser.COMMA, 0)
+
+        def SPRITE_TYPE(self):
+            return self.getToken(DemiseParser.SPRITE_TYPE, 0)
 
         def RPAREN(self):
             return self.getToken(DemiseParser.RPAREN, 0)
@@ -484,11 +485,11 @@ class DemiseParser ( Parser ):
             self.state = 57
             self.match(DemiseParser.LPAREN)
             self.state = 58
-            self.match(DemiseParser.ID)
+            self.match(DemiseParser.FILTER_TYPE)
             self.state = 59
             self.match(DemiseParser.COMMA)
             self.state = 60
-            self.match(DemiseParser.ID)
+            self.match(DemiseParser.SPRITE_TYPE)
             self.state = 61
             self.match(DemiseParser.RPAREN)
         except RecognitionException as re:
@@ -682,7 +683,7 @@ class DemiseParser ( Parser ):
                 self.state = 77 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==17):
+                if not (_la==18):
                     break
 
             self.state = 79
@@ -753,7 +754,7 @@ class DemiseParser ( Parser ):
                 self.state = 85 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==21):
+                if not (_la==22):
                     break
 
             self.state = 87
@@ -1122,7 +1123,7 @@ class DemiseParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 114
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 14336) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 28672) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
