@@ -1,0 +1,40 @@
+// TEST 01 - Caso completamente válido
+// Resultado esperado: Análisis semántico OK, 0 errores, 0 advertencias
+
+sprite wall -> 'wall.jpg'
+sprite floor -> 'floor.jpg'
+sprite sky -> 'sky.jpg'
+
+filter(hotline, ceiling)
+filter(green_waste, floor)
+
+npc imp -> 'Imp.jpg'
+npc Cacodemon -> 'Cacodemon.jpg'
+
+music -> 'Numb.mp3'
+
+map ->
+[1 1 1 1 1 1 1 1 1 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 2 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1];
+
+lightning -> 50
+
+UI -> 'DoomUI.png'
+
+imp -> (3, 3)
+Cacodemon -> (2, 2)
+
+weapon shotgun -> 'Shotgun.png'
+weapon BFG6000 -> 'BFG6000.png'
+
+shotgun -> shotgun
+BFG6000 -> BFG6000
+
+raycasting_test

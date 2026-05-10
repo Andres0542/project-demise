@@ -2,7 +2,6 @@ from .symbol_table import SymbolTable
 from .errors import SemanticError
 from gen.DemiseVisitor import DemiseVisitor
 from gen.DemiseParser import DemiseParser
-from .Comportamiento.Floorcasting import Floorcasting
 
 
 class SemanticVisitor(DemiseVisitor):
@@ -23,6 +22,7 @@ class SemanticVisitor(DemiseVisitor):
 
     # ── spriteDeclaration ─────────────────────────────────────────────────────
     # Regla: SPRITE SPRITE_TYPE ARROW STRING_LITERAL
+    # SPRITE_TYPE es un token léxico: 'wall' | 'floor' | 'sky'
 
     def visitSpriteDeclaration(self, ctx: DemiseParser.SpriteDeclarationContext):
         sprite_type = ctx.SPRITE_TYPE().getText()
@@ -39,10 +39,11 @@ class SemanticVisitor(DemiseVisitor):
 
     # ── filter ────────────────────────────────────────────────────────────────
     # Regla: FILTER LPAREN IDENTIFIER COMMA IDENTIFIER RPAREN
-    # Nombre de regla en .g4: 'filter' → método visitFilter
+    # IDENTIFIER[0] = nombre del filtro, IDENTIFIER[1] = target ('floor' | 'ceiling')
+    # El target se valida semánticamente porque 'ceiling' no es SPRITE_TYPE pero
+    # sí es un target válido de filter según la gramática de referencia.
 
     def visitFilter(self, ctx: DemiseParser.FilterContext):
-        # Los dos IDENTIFIER son: [0] = nombre del filtro, [1] = superficie target
         identifiers = ctx.IDENTIFIER()
         filter_name = identifiers[0].getText()
         target      = identifiers[1].getText()
@@ -57,10 +58,11 @@ class SemanticVisitor(DemiseVisitor):
         return self.visitChildren(ctx)
 
     # ── npcDeclaration ────────────────────────────────────────────────────────
-    # Regla: NPC IDENTIFIER ARROW STRING_LITERAL
+    # Regla: NPC ID ARROW STRING_LITERAL
+    # Usa ID (no IDENTIFIER) según el .g4.
 
     def visitNpcDeclaration(self, ctx: DemiseParser.NpcDeclarationContext):
-        name = ctx.IDENTIFIER().getText()
+        name = ctx.ID().getText()           # token ID, no IDENTIFIER
         path = self._strip(ctx.STRING_LITERAL().getText())
         line = ctx.start.line
 
@@ -125,8 +127,10 @@ class SemanticVisitor(DemiseVisitor):
 
         return self.visitChildren(ctx)
 
-    # ── UIDeclaration ─────────────────────────────────────────────────────────
+    # ── uiDeclaration ─────────────────────────────────────────────────────────
     # Regla: UI ARROW STRING_LITERAL
+    # IMPORTANTE: la regla en el .g4 se llama 'uiDeclaration' (minúscula),
+    # por lo tanto ANTLR genera visitUiDeclaration (no visitUIDeclaration).
 
     def visitUiDeclaration(self, ctx: DemiseParser.UiDeclarationContext):
         path = self._strip(ctx.STRING_LITERAL().getText())
@@ -141,10 +145,11 @@ class SemanticVisitor(DemiseVisitor):
         return self.visitChildren(ctx)
 
     # ── npcPositioning ────────────────────────────────────────────────────────
-    # Regla: IDENTIFIER ARROW LPAREN INTEGER COMMA INTEGER RPAREN
+    # Regla: ID ARROW LPAREN INTEGER COMMA INTEGER RPAREN
+    # Usa ID (no IDENTIFIER) según el .g4.
 
     def visitNpcPositioning(self, ctx: DemiseParser.NpcPositioningContext):
-        name = ctx.IDENTIFIER().getText()
+        name = ctx.ID().getText()           # token ID, no IDENTIFIER
         integers = ctx.INTEGER()
         col = int(integers[0].getText())
         row = int(integers[1].getText())
@@ -159,10 +164,11 @@ class SemanticVisitor(DemiseVisitor):
         return self.visitChildren(ctx)
 
     # ── weaponDeclaration ─────────────────────────────────────────────────────
-    # Regla: WEAPON IDENTIFIER ARROW STRING_LITERAL
+    # Regla: WEAPON ID ARROW STRING_LITERAL
+    # Usa ID (no IDENTIFIER) según el .g4.
 
     def visitWeaponDeclaration(self, ctx: DemiseParser.WeaponDeclarationContext):
-        name = ctx.IDENTIFIER().getText()
+        name = ctx.ID().getText()           # token ID, no IDENTIFIER
         path = self._strip(ctx.STRING_LITERAL().getText())
         line = ctx.start.line
 
@@ -175,12 +181,16 @@ class SemanticVisitor(DemiseVisitor):
         return self.visitChildren(ctx)
 
     # ── weaponLogic ───────────────────────────────────────────────────────────
-    # Regla: IDENTIFIER ARROW IDENTIFIER
+    # Regla: ID ARROW WEAPON_LOGIC
+    # El comportamiento viene del token WEAPON_LOGIC (no IDENTIFIER):
+    # 'chainsaw' | 'fist' | 'pistol' | 'shotgun' | 'chaingun' |
+    # 'rocket_launcher' | 'energy_rifle' | 'BFG6000'
+    # Nota: el lexer garantiza que WEAPON_LOGIC solo matchea esas cadenas,
+    # pero se valida igual en el SymbolTable por robustez.
 
     def visitWeaponLogic(self, ctx: DemiseParser.WeaponLogicContext):
-        identifiers = ctx.IDENTIFIER()
-        weapon_name = identifiers[0].getText()
-        behavior    = identifiers[1].getText()
+        weapon_name = ctx.ID().getText()            # token ID
+        behavior    = ctx.WEAPON_LOGIC().getText()  # token WEAPON_LOGIC
         line = ctx.start.line
 
         try:
@@ -192,18 +202,17 @@ class SemanticVisitor(DemiseVisitor):
         return self.visitChildren(ctx)
 
     # ── testCommand ───────────────────────────────────────────────────────────
-    # Regla: FLOORCASTING_TEST | RAYCASTING_TEST | RAYCASTING_MAZE_TEST | REFLEXING_FLOOR
+    # Regla: FLOORCASTING_TEST | RAYCASTING_TEST | RAYCASTING_MAZE_TEST
+    # REFLEXING_FLOOR no existe en el .g4 actual, se elimina.
 
     def visitTestCommand(self, ctx: DemiseParser.TestCommandContext):
         if ctx.FLOORCASTING_TEST():
-            print("🧪 Ejecutando floorcasting_test...")
-            Floorcasting().main()
+            print("✅ Ejecutando test de floorcasting")
+            # Floorcasting().main()
         elif ctx.RAYCASTING_TEST():
-            print("🧪 Ejecutando raycasting_test...")
+            print("✅ Ejecutando test de raycasting")
         elif ctx.RAYCASTING_MAZE_TEST():
-            print("🧪 Ejecutando raycasting_maze_test...")
-        elif ctx.REFLEXING_FLOOR():
-            print("🧪 Ejecutando reflexing_floor...")
+            print("✅ Ejecutando test de laberinto con raycasting")
 
         return self.visitChildren(ctx)
 

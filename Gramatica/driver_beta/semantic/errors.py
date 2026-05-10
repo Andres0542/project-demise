@@ -99,14 +99,32 @@ class WeaponNotDeclaredError(SemanticError):
 
 
 class InvalidWeaponBehaviorError(SemanticError):
+    # Alineado con WEAPON_LOGIC en Demise.g4:
+    # 'chainsaw' | 'fist' | 'pistol' | 'shotgun' | 'chaingun' |
+    # 'rocket_launcher' | 'energy_rifle' | 'BFG6000'
+    # Nota: el .g4 usa 'fist' (sin 's'), NO 'fists'.
     VALID = {
-        "chainsaw", "fists", "pistol", "shotgun",
+        "chainsaw", "fist", "pistol", "shotgun",
         "chaingun", "rocket_launcher", "energy_rifle", "BFG6000",
     }
 
     def __init__(self, behavior: str, line: int):
         super().__init__(
             f"El comportamiento de arma '{behavior}' no es válido. "
+            f"Valores aceptados: {', '.join(sorted(self.VALID))}.",
+            line,
+        )
+
+
+# ── Errores de filtro ──────────────────────────────────────────────────────────
+
+class InvalidFilterTargetError(SemanticError):
+    """El segundo argumento de filter() debe ser 'floor' o 'ceiling'."""
+    VALID = {"floor", "ceiling"}
+
+    def __init__(self, target: str, line: int):
+        super().__init__(
+            f"El target de filtro '{target}' no es válido. "
             f"Valores aceptados: {', '.join(sorted(self.VALID))}.",
             line,
         )

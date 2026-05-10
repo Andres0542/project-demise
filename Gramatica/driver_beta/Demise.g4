@@ -5,16 +5,16 @@ program
     ;
 
 statement
-    : spriteDeclaration //spriteDeclaration
-    | mapDeclaration //mapDeclaratuion
-    | npcDeclaration //npcDeclaration
-    | npcPositioning //npcPositioning
-    | musicDeclaration // musicDeclaration
-    | weaponDeclaration // weaponDeclaration
-    | weaponLogic // weaponLogic
-    | filter //filter
-    | uiDeclaration //UIDeclaration
-    | lightningDeclaration //lightningDeclaration
+    : spriteDeclaration 
+    | mapDeclaration 
+    | npcDeclaration
+    | npcPositioning 
+    | musicDeclaration
+    | weaponDeclaration 
+    | weaponLogic 
+    | filter 
+    | uiDeclaration 
+    | lightningDeclaration 
     | testCommand
     | COMENTARIO
     | ESPACIO
@@ -27,14 +27,14 @@ spriteDeclaration
     : SPRITE SPRITE_TYPE ARROW STRING_LITERAL
     ;
 
-// filter(hotline, ceiling)
+// filter(hotline, sky)
 filter
-    : FILTER LPAREN IDENTIFIER COMMA IDENTIFIER RPAREN
+    : FILTER LPAREN ID COMMA ID RPAREN
     ;
 
 // npc imp -> 'Imp.jpg'
 npcDeclaration
-    : NPC IDENTIFIER ARROW STRING_LITERAL
+    : NPC ID ARROW STRING_LITERAL
     ;
 
 // music -> 'Numb.mp3'
@@ -45,8 +45,8 @@ musicDeclaration
 // map -> [1 0 0 ...] [1 0 ...] ... ;
 mapDeclaration
     : MAP ARROW mapRow+ SEMICOLON
-    ;
-
+    ;  
+// 
 mapRow
     : LBRACKET INTEGER+ RBRACKET
     ;
@@ -64,18 +64,18 @@ uiDeclaration
 // imp -> (3,3)
 // Cacodemon -> (2,2)
 npcPositioning
-    : IDENTIFIER ARROW LPAREN INTEGER COMMA INTEGER RPAREN
+    : ID ARROW LPAREN INTEGER COMMA INTEGER RPAREN
     ;
 
 // weapon shotgun -> 'Shotgun.png'
 weaponDeclaration
-    : WEAPON IDENTIFIER ARROW STRING_LITERAL
+    : WEAPON ID ARROW STRING_LITERAL
     ;
 
 // shotgun -> shotgun
 // BFG6000 -> BFG6000
 weaponLogic
-    : IDENTIFIER ARROW IDENTIFIER
+    : ID ARROW WEAPON_LOGIC
     ;
 
 // Predefined test commands
@@ -83,14 +83,13 @@ testCommand
     : FLOORCASTING_TEST
     | RAYCASTING_TEST
     | RAYCASTING_MAZE_TEST
-    | REFLEXING_FLOOR
     ;
 
 
-// ─── Keywords ────────────────────────────────────────────────────────────────
+// ================ LEXER ==========================
 
 SPRITE              : 'sprite';
-SPRITE_TYPE         : 'wall' | 'floor' | 'ceiling' | 'sky';
+SPRITE_TYPE         : 'wall' | 'floor' | 'sky';
 FILTER              : 'filter';
 NPC                 : 'npc';
 MUSIC               : 'music';
@@ -98,14 +97,13 @@ MAP                 : 'map';
 LIGHTNING           : 'lightning';
 UI                  : 'UI';
 WEAPON              : 'weapon';
-
+WEAPON_LOGIC        : 'chainsaw' | 'fist' | 'pistol' | 'shotgun' | 'chaingun' | 'rocket_launcher' | 'energy_rifle' |'BFG6000' ;
 FLOORCASTING_TEST   : 'floorcasting_test';
 RAYCASTING_TEST     : 'raycasting_test';
 RAYCASTING_MAZE_TEST: 'raycasting_maze_test';
-REFLEXING_FLOOR     : 'reflexing_floor';
 
 
-// ─── Delimiters ───────────────────────────────────────────────────────────────
+// DELIMITADORES
 
 ARROW               : '->';
 LPAREN              : '(';
@@ -114,9 +112,6 @@ LBRACKET            : '[';
 RBRACKET            : ']';
 COMMA               : ',';
 SEMICOLON           : ';';
-
-
-// ─── Literals ─────────────────────────────────────────────────────────────────
 
 INTEGER
     : [0-9]+
@@ -127,15 +122,10 @@ STRING_LITERAL
     ;
 
 
-// ─── Identifier ───────────────────────────────────────────────────────────────
-// Must come AFTER all keywords so keywords are matched first
-
-IDENTIFIER
+ID
     : [a-zA-Z_][a-zA-Z0-9_]*
     ;
 
-
-// ─── Comments & whitespace ────────────────────────────────────────────────────
 
 COMENTARIO
     : '//' ~[\r\n]*

@@ -19,7 +19,7 @@ def serializedATN():
         7,85,1,7,1,7,1,8,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,10,1,10,1,10,1,10,
         1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,
         1,13,1,13,1,13,0,0,14,0,2,4,6,8,10,12,14,16,18,20,22,24,26,0,1,1,
-        0,10,13,117,0,31,1,0,0,0,2,49,1,0,0,0,4,51,1,0,0,0,6,56,1,0,0,0,
+        0,11,13,117,0,31,1,0,0,0,2,49,1,0,0,0,4,51,1,0,0,0,6,56,1,0,0,0,
         8,63,1,0,0,0,10,68,1,0,0,0,12,72,1,0,0,0,14,81,1,0,0,0,16,89,1,0,
         0,0,18,93,1,0,0,0,20,97,1,0,0,0,22,105,1,0,0,0,24,110,1,0,0,0,26,
         114,1,0,0,0,28,30,3,2,1,0,29,28,1,0,0,0,30,33,1,0,0,0,31,29,1,0,
@@ -44,7 +44,7 @@ def serializedATN():
         0,0,98,99,5,14,0,0,99,100,5,15,0,0,100,101,5,21,0,0,101,102,5,19,
         0,0,102,103,5,21,0,0,103,104,5,16,0,0,104,21,1,0,0,0,105,106,5,9,
         0,0,106,107,5,23,0,0,107,108,5,14,0,0,108,109,5,22,0,0,109,23,1,
-        0,0,0,110,111,5,23,0,0,111,112,5,14,0,0,112,113,5,23,0,0,113,25,
+        0,0,0,110,111,5,23,0,0,111,112,5,14,0,0,112,113,5,10,0,0,113,25,
         1,0,0,0,114,115,7,0,0,0,115,27,1,0,0,0,4,31,49,77,85
     ]
 
@@ -60,16 +60,16 @@ class DemiseParser ( Parser ):
 
     literalNames = [ "<INVALID>", "'sprite'", "<INVALID>", "'filter'", "'npc'", 
                      "'music'", "'map'", "'lightning'", "'UI'", "'weapon'", 
-                     "'floorcasting_test'", "'raycasting_test'", "'raycasting_maze_test'", 
-                     "'reflexing_floor'", "'->'", "'('", "')'", "'['", "']'", 
-                     "','", "';'" ]
+                     "<INVALID>", "'floorcasting_test'", "'raycasting_test'", 
+                     "'raycasting_maze_test'", "'->'", "'('", "')'", "'['", 
+                     "']'", "','", "';'" ]
 
     symbolicNames = [ "<INVALID>", "SPRITE", "SPRITE_TYPE", "FILTER", "NPC", 
-                      "MUSIC", "MAP", "LIGHTNING", "UI", "WEAPON", "FLOORCASTING_TEST", 
-                      "RAYCASTING_TEST", "RAYCASTING_MAZE_TEST", "REFLEXING_FLOOR", 
+                      "MUSIC", "MAP", "LIGHTNING", "UI", "WEAPON", "WEAPON_LOGIC", 
+                      "FLOORCASTING_TEST", "RAYCASTING_TEST", "RAYCASTING_MAZE_TEST", 
                       "ARROW", "LPAREN", "RPAREN", "LBRACKET", "RBRACKET", 
                       "COMMA", "SEMICOLON", "INTEGER", "STRING_LITERAL", 
-                      "IDENTIFIER", "COMENTARIO", "ESPACIO", "WS" ]
+                      "ID", "COMENTARIO", "ESPACIO", "WS" ]
 
     RULE_program = 0
     RULE_statement = 1
@@ -101,10 +101,10 @@ class DemiseParser ( Parser ):
     LIGHTNING=7
     UI=8
     WEAPON=9
-    FLOORCASTING_TEST=10
-    RAYCASTING_TEST=11
-    RAYCASTING_MAZE_TEST=12
-    REFLEXING_FLOOR=13
+    WEAPON_LOGIC=10
+    FLOORCASTING_TEST=11
+    RAYCASTING_TEST=12
+    RAYCASTING_MAZE_TEST=13
     ARROW=14
     LPAREN=15
     RPAREN=16
@@ -114,7 +114,7 @@ class DemiseParser ( Parser ):
     SEMICOLON=20
     INTEGER=21
     STRING_LITERAL=22
-    IDENTIFIER=23
+    ID=23
     COMENTARIO=24
     ESPACIO=25
     WS=26
@@ -175,7 +175,7 @@ class DemiseParser ( Parser ):
             self.state = 31
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 58736634) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 58735610) != 0):
                 self.state = 28
                 self.statement()
                 self.state = 33
@@ -441,11 +441,11 @@ class DemiseParser ( Parser ):
         def LPAREN(self):
             return self.getToken(DemiseParser.LPAREN, 0)
 
-        def IDENTIFIER(self, i:int=None):
+        def ID(self, i:int=None):
             if i is None:
-                return self.getTokens(DemiseParser.IDENTIFIER)
+                return self.getTokens(DemiseParser.ID)
             else:
-                return self.getToken(DemiseParser.IDENTIFIER, i)
+                return self.getToken(DemiseParser.ID, i)
 
         def COMMA(self):
             return self.getToken(DemiseParser.COMMA, 0)
@@ -484,11 +484,11 @@ class DemiseParser ( Parser ):
             self.state = 57
             self.match(DemiseParser.LPAREN)
             self.state = 58
-            self.match(DemiseParser.IDENTIFIER)
+            self.match(DemiseParser.ID)
             self.state = 59
             self.match(DemiseParser.COMMA)
             self.state = 60
-            self.match(DemiseParser.IDENTIFIER)
+            self.match(DemiseParser.ID)
             self.state = 61
             self.match(DemiseParser.RPAREN)
         except RecognitionException as re:
@@ -510,8 +510,8 @@ class DemiseParser ( Parser ):
         def NPC(self):
             return self.getToken(DemiseParser.NPC, 0)
 
-        def IDENTIFIER(self):
-            return self.getToken(DemiseParser.IDENTIFIER, 0)
+        def ID(self):
+            return self.getToken(DemiseParser.ID, 0)
 
         def ARROW(self):
             return self.getToken(DemiseParser.ARROW, 0)
@@ -548,7 +548,7 @@ class DemiseParser ( Parser ):
             self.state = 63
             self.match(DemiseParser.NPC)
             self.state = 64
-            self.match(DemiseParser.IDENTIFIER)
+            self.match(DemiseParser.ID)
             self.state = 65
             self.match(DemiseParser.ARROW)
             self.state = 66
@@ -888,8 +888,8 @@ class DemiseParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFIER(self):
-            return self.getToken(DemiseParser.IDENTIFIER, 0)
+        def ID(self):
+            return self.getToken(DemiseParser.ID, 0)
 
         def ARROW(self):
             return self.getToken(DemiseParser.ARROW, 0)
@@ -936,7 +936,7 @@ class DemiseParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 97
-            self.match(DemiseParser.IDENTIFIER)
+            self.match(DemiseParser.ID)
             self.state = 98
             self.match(DemiseParser.ARROW)
             self.state = 99
@@ -968,8 +968,8 @@ class DemiseParser ( Parser ):
         def WEAPON(self):
             return self.getToken(DemiseParser.WEAPON, 0)
 
-        def IDENTIFIER(self):
-            return self.getToken(DemiseParser.IDENTIFIER, 0)
+        def ID(self):
+            return self.getToken(DemiseParser.ID, 0)
 
         def ARROW(self):
             return self.getToken(DemiseParser.ARROW, 0)
@@ -1006,7 +1006,7 @@ class DemiseParser ( Parser ):
             self.state = 105
             self.match(DemiseParser.WEAPON)
             self.state = 106
-            self.match(DemiseParser.IDENTIFIER)
+            self.match(DemiseParser.ID)
             self.state = 107
             self.match(DemiseParser.ARROW)
             self.state = 108
@@ -1027,14 +1027,14 @@ class DemiseParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFIER(self, i:int=None):
-            if i is None:
-                return self.getTokens(DemiseParser.IDENTIFIER)
-            else:
-                return self.getToken(DemiseParser.IDENTIFIER, i)
+        def ID(self):
+            return self.getToken(DemiseParser.ID, 0)
 
         def ARROW(self):
             return self.getToken(DemiseParser.ARROW, 0)
+
+        def WEAPON_LOGIC(self):
+            return self.getToken(DemiseParser.WEAPON_LOGIC, 0)
 
         def getRuleIndex(self):
             return DemiseParser.RULE_weaponLogic
@@ -1063,11 +1063,11 @@ class DemiseParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 110
-            self.match(DemiseParser.IDENTIFIER)
+            self.match(DemiseParser.ID)
             self.state = 111
             self.match(DemiseParser.ARROW)
             self.state = 112
-            self.match(DemiseParser.IDENTIFIER)
+            self.match(DemiseParser.WEAPON_LOGIC)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1092,9 +1092,6 @@ class DemiseParser ( Parser ):
 
         def RAYCASTING_MAZE_TEST(self):
             return self.getToken(DemiseParser.RAYCASTING_MAZE_TEST, 0)
-
-        def REFLEXING_FLOOR(self):
-            return self.getToken(DemiseParser.REFLEXING_FLOOR, 0)
 
         def getRuleIndex(self):
             return DemiseParser.RULE_testCommand
@@ -1125,7 +1122,7 @@ class DemiseParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 114
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 15360) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 14336) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

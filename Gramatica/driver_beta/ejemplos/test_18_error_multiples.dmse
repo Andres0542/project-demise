@@ -1,0 +1,28 @@
+// TEST 18 - Múltiples errores semánticos en simultáneo
+// Errores esperados (en orden de aparición):
+//   1. DuplicateSpriteError    → 'wall' repetido        (línea 4)
+//   2. DuplicateMusicError     → segunda música          (línea 8)
+//   3. DuplicateLightningError → segunda iluminación     (línea 12)
+//   4. NPCNotDeclaredError     → 'fantasma' no declarado (línea 22)
+//   5. WeaponNotDeclaredError  → 'plasma' no declarada   (línea 24)
+
+sprite wall -> 'wall.jpg'
+sprite floor -> 'floor.jpg'
+sprite wall -> 'wall2.jpg'
+
+music -> 'Numb.mp3'
+music -> 'E1M1.mp3'
+
+npc imp -> 'Imp.jpg'
+
+lightning -> 50
+lightning -> 75
+
+map ->
+[1 1 1 1 1]
+[1 0 0 0 1]
+[1 0 0 0 1]
+[1 1 1 1 1];
+
+fantasma -> (1, 1)
+plasma -> shotgun
