@@ -20,12 +20,12 @@ def main():
     visitor.visit(tree) # iniciar analisis semantico
     
     # -- reporte errores semanticos
-    if visitor.errors:
-        print('\n=== ERRORES SEMÁNTICOS ===')
-        for e in visitor.errors:
-            print(' ', e)
-    else:
-        print('Análisis semántico: OK')
+    #if visitor.errors:
+        #print('\n=== ERRORES SEMÁNTICOS ===')
+        #for e in visitor.errors:
+            #print(' ', e)
+    #else:
+        #print('Análisis semántico: OK')
     
     #warns = visitor.symtab.unused_warnings()
     #if warns:

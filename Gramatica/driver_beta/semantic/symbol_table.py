@@ -1,24 +1,5 @@
 import os
-from .errors import (
-    SemanticError,
-    ResourceNotFoundError,
-    DuplicateSpriteError,
-    DuplicatePathError,
-    DuplicateNPCError,
-    DuplicateWeaponError,
-    DuplicateMusicError,
-    DuplicateMapError,
-    DuplicateUIError,
-    DuplicateLightningError,
-    LightningRangeError,
-    MapCoordError,
-    MapNotDeclaredError,
-    NPCNotDeclaredError,
-    WeaponNotDeclaredError,
-    InvalidWeaponBehaviorError,
-    InvalidFilterTargetError,
-)
-
+from .errors import SemanticError
 # Comportamientos de arma válidos según WEAPON_LOGIC en Demise.g4.
 # IMPORTANTE: el .g4 define 'fist' (sin 's'), no 'fists'.
 VALID_WEAPON_BEHAVIORS = {
@@ -72,7 +53,7 @@ class SymbolTable:
     def _check_file_exists(self, path: str, line: int):
         """Lanza ResourceNotFoundError si el archivo no existe en disco."""
         if not os.path.exists(path):
-            raise ResourceNotFoundError(path, line)
+            raise SemanticError(f"El archivod '{path}' no existe.", line) #Mod
 
     def _check_path_unique(self, path: str, line: int):
         """Lanza DuplicatePathError si la ruta ya está registrada en cualquier símbolo."""
@@ -84,7 +65,7 @@ class SymbolTable:
             + ([self.ui["path"]] if self.ui else [])
         )
         if path in all_paths:
-            raise DuplicatePathError(path, line)
+            raise SemanticError(f"La ruta '{path}' ya está en uso por otro símbolo.", line) #Mod
 
     # ── Sprites ───────────────────────────────────────────────────────────────
     # Regla: SPRITE SPRITE_TYPE ARROW STRING_LITERAL
@@ -93,7 +74,7 @@ class SymbolTable:
     def declare_sprite(self, sprite_type: str, path: str, line: int):
         """Registra un sprite de entorno (wall, floor, sky)."""
         if sprite_type in self.sprites:
-            raise DuplicateSpriteError(sprite_type, line)
+            raise SemanticError(f"El sprite '{sprite_type}' ya fue declarado.", line) #Mod
         self._check_file_exists(path, line)
         self._check_path_unique(path, line)
         self.sprites[sprite_type] = {"path": path, "line": line}
@@ -108,7 +89,7 @@ class SymbolTable:
         Valida que el target sea 'floor' o 'ceiling'.
         """
         if target not in VALID_FILTER_TARGETS:
-            raise InvalidFilterTargetError(target, line)
+            raise SemanticError(f"El target '{target}' no es válido para el filtro.", line) #Mod
         self.filters.append({"filter": filter_name, "target": target, "line": line})
 
     # ── NPCs ──────────────────────────────────────────────────────────────────
@@ -116,8 +97,8 @@ class SymbolTable:
 
     def declare_npc(self, name: str, path: str, line: int):
         """Registra un NPC y su sprite."""
-        if name in self.npcs:
-            raise DuplicateNPCError(name, line)
+        if name in self.npcs: 
+            raise SemanticError(f"El NPC '{name}' ya fue declarado.", line) #Mod
         self._check_file_exists(path, line)
         self._check_path_unique(path, line)
         self.npcs[name] = {"path": path, "line": line}
@@ -128,7 +109,7 @@ class SymbolTable:
     def declare_music(self, path: str, line: int):
         """Registra la pista de música del nivel."""
         if self.music is not None:
-            raise DuplicateMusicError(line)
+            raise SemanticError("Ya se declaró una pista de música para este nivel.", line) #Mod
         self._check_file_exists(path, line)
         self.music = {"path": path, "line": line}
 
@@ -138,7 +119,7 @@ class SymbolTable:
     def declare_map(self, grid: list[list[int]], line: int):
         """Registra la matriz del mapa del nivel."""
         if self.map_grid is not None:
-            raise DuplicateMapError(line)
+            raise SemanticError("Ya se declaró un mapa para este nivel.", line) #Mod
         self.map_grid = grid
         self.map_line = line
 
@@ -148,9 +129,9 @@ class SymbolTable:
     def declare_lightning(self, value: int, line: int):
         """Registra el nivel de iluminación (0–100)."""
         if self.lightning is not None:
-            raise DuplicateLightningError(line)
+            raise SemanticError("Ya se declaró un valor de iluminación para este nivel.", line) #Mod
         if not (0 <= value <= 100):
-            raise LightningRangeError(value, line)
+            raise LightningRangeError(value, line) #Mod
         self.lightning = value
 
     # ── UI ────────────────────────────────────────────────────────────────────
@@ -159,7 +140,7 @@ class SymbolTable:
     def declare_ui(self, path: str, line: int):
         """Registra la imagen de HUD del nivel."""
         if self.ui is not None:
-            raise DuplicateUIError(line)
+            raise SemanticError("Ya se declaró una UI para este nivel.", line) #Mod
         self._check_file_exists(path, line)
         self.ui = {"path": path, "line": line}
 
@@ -175,16 +156,16 @@ class SymbolTable:
           - Las coordenadas (col, row) están dentro de los límites del mapa.
         """
         if self.map_grid is None:
-            raise MapNotDeclaredError(line)
+            raise SemanticError("Se intentó posicionar un NPC pero el mapa aún no fue declarado.", line) #Mod
         if name not in self.npcs:
-            raise NPCNotDeclaredError(name, line)
+            raise SemanticError(f"El NPC '{name}' no fue declarado antes de ser posicionado.", line) #Mod
 
         num_rows = len(self.map_grid)
         num_cols = len(self.map_grid[0]) if num_rows > 0 else 0
 
         # Acceso: map_grid[row][col]
         if not (0 <= row < num_rows and 0 <= col < num_cols):
-            raise MapCoordError(name, col, row, line)
+            raise MapCoordError(name, col, row, line) #Mod
 
         self.npc_positions[name] = {"col": col, "row": row, "line": line}
 
@@ -194,7 +175,7 @@ class SymbolTable:
     def declare_weapon(self, name: str, path: str, line: int):
         """Registra un arma y su sprite."""
         if name in self.weapons:
-            raise DuplicateWeaponError(name, line)
+            raise SemanticError(f"El arma '{name}' ya fue declarada.", line) #Mod
         self._check_file_exists(path, line)
         self._check_path_unique(path, line)
         self.weapons[name] = {"path": path, "line": line}
@@ -215,7 +196,7 @@ class SymbolTable:
         barrera para usos programáticos directos del SymbolTable.
         """
         if weapon_name not in self.weapons:
-            raise WeaponNotDeclaredError(weapon_name, line)
+            raise SemanticError(f"El arma '{weapon_name}' no fue declarada antes de asignarle un comportamiento.", line) #Mod
         if behavior not in VALID_WEAPON_BEHAVIORS:
-            raise InvalidWeaponBehaviorError(behavior, line)
+            raise SemanticError(f"El comportamiento de arma '{behavior}' no es válido. Valores aceptados: {', '.join(sorted(VALID_WEAPON_BEHAVIORS))}.", line) #Mod
         self.weapon_behaviors[weapon_name] = {"behavior": behavior, "line": line}

@@ -30,7 +30,7 @@ class SemanticVisitor(DemiseVisitor):
 
         try:
             self.symtab.declare_sprite(sprite_type, path, line)
-            print(f"✅ Sprite registrado: tipo='{sprite_type}' | path='{path}'")
+            print(f"Sprite registrado: tipo='{sprite_type}' | path='{path}'")
         except SemanticError as e:
             self._error(e)
 
@@ -86,7 +86,7 @@ class SemanticVisitor(DemiseVisitor):
 
         try:
             self.symtab.declare_music(path, line)
-            print(f"✅ Música registrada: '{path}'")
+            print(f"Música registrada: '{path}'")
         except SemanticError as e:
             self._error(e)
 
@@ -107,7 +107,7 @@ class SemanticVisitor(DemiseVisitor):
         try:
             self.symtab.declare_map(grid, line)
             print(
-                f"✅ Mapa registrado: "
+                f"Mapa registrado: "
                 f"{len(grid)} filas × {len(grid[0]) if grid else 0} columnas"
             )
         except SemanticError as e:
@@ -124,7 +124,7 @@ class SemanticVisitor(DemiseVisitor):
 
         try:
             self.symtab.declare_lightning(value, line)
-            print(f"✅ Iluminación registrada: {value}")
+            print(f"Iluminación registrada: {value}")
         except SemanticError as e:
             self._error(e)
 
@@ -141,7 +141,7 @@ class SemanticVisitor(DemiseVisitor):
 
         try:
             self.symtab.declare_ui(path, line)
-            print(f"✅ UI registrada: '{path}'")
+            print(f"UI registrada: '{path}'")
         except SemanticError as e:
             self._error(e)
 
@@ -160,7 +160,7 @@ class SemanticVisitor(DemiseVisitor):
 
         try:
             self.symtab.declare_npc_position(name, col, row, line)
-            print(f"✅ NPC '{name}' posicionado en ({col},{row})")
+            print(f"NPC '{name}' posicionado en ({col},{row})")
         except SemanticError as e:
             self._error(e)
 
@@ -177,7 +177,7 @@ class SemanticVisitor(DemiseVisitor):
 
         try:
             self.symtab.declare_weapon(name, path, line)
-            print(f"✅ Arma registrada: '{name}' | path='{path}'")
+            print(f"Arma registrada: '{name}' | path='{path}'")
         except SemanticError as e:
             self._error(e)
 
@@ -198,7 +198,7 @@ class SemanticVisitor(DemiseVisitor):
 
         try:
             self.symtab.declare_weapon_behavior(weapon_name, behavior, line)
-            print(f"✅ Comportamiento de arma: '{weapon_name}' → '{behavior}'")
+            print(f"Comportamiento de arma: '{weapon_name}' → '{behavior}'")
         except SemanticError as e:
             self._error(e)
 
@@ -210,12 +210,12 @@ class SemanticVisitor(DemiseVisitor):
 
     def visitTestCommand(self, ctx: DemiseParser.TestCommandContext):
         if ctx.FLOORCASTING_TEST():
-            print("✅ Ejecutando test de floorcasting")
+            print("Ejecutando test de floorcasting")
             # Floorcasting().main()
         elif ctx.RAYCASTING_TEST():
-            print("✅ Ejecutando test de raycasting")
+            print("Ejecutando test de raycasting")
         elif ctx.RAYCASTING_MAZE_TEST():
-            print("✅ Ejecutando test de laberinto con raycasting")
+            print("Ejecutando test de laberinto con raycasting")
 
         return self.visitChildren(ctx)
 
@@ -225,7 +225,7 @@ class SemanticVisitor(DemiseVisitor):
         """Imprime un resumen del análisis semántico al finalizar."""
         print("\n" + "=" * 50)
         if not self.errors:
-            print("✅ Análisis semántico completado sin errores.")
+            print("Análisis semántico completado sin errores.")
         else:
             print(f"❌ Análisis semántico completado con {len(self.errors)} error(es):")
             for e in self.errors:
