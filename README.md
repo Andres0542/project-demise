@@ -1,16 +1,18 @@
 # project-demise
-Raycasting tech simplified even more for Python users to use!!! Only your perturbated imagination is the limit
 
-# 🎮 Demise — Lenguaje de Configuración de Niveles
+Tecnologia de Raycasting simplificada incluso mas a la merced de usuarios de Python!!! Vuestra perturbada imaginacion es el limite
 
-**Demise** es un lenguaje de dominio específico (DSL) diseñado para configurar niveles de un videojuego tipo *raycasting* (estilo Doom/Wolfenstein). Permite declarar recursos visuales, mapas, enemigos, armas, música e iluminación mediante una sintaxis simple y legible.
+#Disclaimer con codigo de Ejemplos
 
-La gramática está definida en ANTLR4 (`Demise.g4`) y su análisis semántico es implementado en Python.
+Todos los codigos de RayCasting con Python son un intento mio siguiendo este tutorial de implementacion de raycasting en PyGame.
+Si te interesa saber mas del tema, puedes ver los tutoriales en: 
 
----
+*  Floorcasting: https://youtu.be/2Yj5mmKWukw?si=yDYng4rWeI4sZxeb
+*  RayCasting: https://youtu.be/4gqPv7A_YRY?si=WLRq5uRCKcoZpoTK
+*  El ultimo ejemplo de RayCasting en donde el suelo se refleja es sacado directamente del Github en: https://github.com/FinFetChannel/RayCasting2021
 
 ## 📋 Tabla de contenidos
-
+- [Disclaimer](#disclaimer-con-codigo-de-Ejemplos)
 - [Estructura general](#estructura-general)
 - [Declaraciones](#declaraciones)
   - [sprite](#sprite)
@@ -29,6 +31,43 @@ La gramática está definida en ANTLR4 (`Demise.g4`) y su análisis semántico e
 - [Reglas semánticas](#reglas-semánticas)
 - [Advertencias](#advertencias)
 - [Ejemplo completo](#ejemplo-completo)
+# Que es Project Demise?
+
+Es un lenguaje compilado con ANTLR y LLVM con el proposito de simplificar el proceso de desarrollo de niveles con raycasting.
+Su gramatica es directa, de tal forma que el usuario solo tiene que declarar variables y asignar texturas para poder realizar una prueba sencilla.
+
+#Ejemplo breve 
+```
+// === Texturas de entorno ===
+sprite wall  -> 'wall.jpg'
+sprite floor -> 'floor.jpg'
+sprite sky   -> 'sky.jpg'
+
+// === Filtros visuales ===
+filter(hotline,    ceiling)
+filter(green_waste, floor)
+
+// === Enemigos ===
+npc imp       -> 'Imp.jpg'
+npc Cacodemon -> 'Cacodemon.jpg'
+
+// === Música ===
+music -> 'Numb.mp3'
+
+// === Test de motor ===
+raycasting_test
+```
+# Porque realizamos Porject Demise?
+
+Porque, aunque el raycasting sea una tecnica de simulacion 3D antigua, la gente sigue usandola para poder desarrollar sus primeros juegos en 3D de forma relativamente sencilla.
+Proytectos como Wolfenstein 3D y toda la saga clasica de Doom ha dejado una huella en la implementacion de esta sagrada herramienta.
+El problema viene cuando intentas realizar un proyecto como este en Python usando PyGame. El proceso puede tornarse a ser muy tedioso cuando intentas programar cosas que deberian ser basicas, y terminas confundiendote demasiado en configuraciones.
+
+# Quienes son nuestro publico con este proyecto?
+
+Esperamos que con este proyecto podamos alcanzar a aquellos modders de la comunidad de Doom y del raycasting en general para darle una probada a nuestra herramienta. Todos los que esten interesados en desarrollar su primer juego 3D son tambien bienvenidos a este dominio sagrado.
+
+
 
 ---
 
@@ -40,20 +79,19 @@ Un programa Demise es una secuencia de **declaraciones** (`statement`) en cualqu
 programa
   └── statement*
         ├── spriteDeclaration
-        ├── filter
-        ├── npcDeclaration
-        ├── musicDeclaration
         ├── mapDeclaration
-        ├── lightningDeclaration
-        ├── uiDeclaration
-        ├── npcPositioning
+        ├── npcDeclaration
+        ├── npcPositioning 
+        ├── musicDeclaration
         ├── weaponDeclaration
-        ├── weaponLogic
+        ├── weaponLogic 
+        ├── filter 
+        ├── uiDeclaration 
+        ├── lightningDeclaration
         ├── testCommand
-        └── comentario
+        └── COMENTARIO
+        └── ESPACIO
 ```
-
----
 
 ## Declaraciones
 
@@ -91,15 +129,10 @@ filter(<nombre_filtro>, <target>)
 **Targets válidos:** `floor` · `ceiling`
 
 ```
-filter(hotline,    ceiling)
-filter(bloody_moon, ceiling)
+filter(hotline,    sky)
+filter(bloody_moon, sky)
 filter(green_waste, floor)
 ```
-
-**Reglas semánticas:**
-- El `<target>` debe ser `floor` o `ceiling`. Cualquier otro valor genera un error.
-- Se pueden declarar múltiples filtros sobre el mismo target.
-
 ---
 
 ### `npc`
@@ -274,14 +307,14 @@ BFG6000 -> BFG6000
 
 | Token | Descripción |
 |-------|-------------|
-| `chainsaw` | Motosierra (cuerpo a cuerpo) |
-| `fist` | Puños (cuerpo a cuerpo) |
-| `pistol` | Pistola estándar |
+| `chainsaw` | Motosierra  |
+| `fist` | Puños  |
+| `pistol` | Pistola  |
 | `shotgun` | Escopeta |
 | `chaingun` | Ametralladora |
 | `rocket_launcher` | Lanzacohetes |
 | `energy_rifle` | Rifle de energía |
-| `BFG6000` | BFG 9000 |
+| `BFG6000` | BFG 6000 |
 
 **Reglas semánticas:**
 - El arma referenciada debe haber sido declarada previamente con `weapon`.
@@ -332,42 +365,6 @@ sprite wall -> 'wall.jpg'   // Comentario al final de línea
 | `ARROW` | Símbolo de asignación | `->` |
 
 > Los espacios y tabulaciones (`\t`, ` `) son ignorados por el lexer. Los saltos de línea son reconocidos como token `ESPACIO` pero no afectan la semántica.
-
----
-
-## Reglas semánticas
-
-Resumen de todas las validaciones aplicadas durante el análisis semántico:
-
-| Regla | Error lanzado |
-|-------|---------------|
-| Sprite de mismo tipo declarado más de una vez | `DuplicateSpriteError` |
-| Ruta de archivo usada por más de un símbolo | `DuplicatePathError` |
-| Archivo referenciado no existe en disco | `ResourceNotFoundError` |
-| NPC declarado más de una vez con el mismo nombre | `DuplicateNPCError` |
-| Arma declarada más de una vez con el mismo nombre | `DuplicateWeaponError` |
-| `music` declarada más de una vez | `DuplicateMusicError` |
-| `map` declarado más de una vez | `DuplicateMapError` |
-| `UI` declarada más de una vez | `DuplicateUIError` |
-| `lightning` declarado más de una vez | `DuplicateLightningError` |
-| Valor de `lightning` fuera de `[0, 100]` | `LightningRangeError` |
-| NPC posicionado antes de declarar el mapa | `MapNotDeclaredError` |
-| NPC posicionado sin haber sido declarado | `NPCNotDeclaredError` |
-| Coordenadas de NPC fuera de los límites del mapa | `MapCoordError` |
-| `weaponLogic` aplicado a un arma no declarada | `WeaponNotDeclaredError` |
-| Comportamiento de arma no reconocido | `InvalidWeaponBehaviorError` |
-| Target de `filter` distinto de `floor` o `ceiling` | `InvalidFilterTargetError` |
-
----
-
-## Advertencias
-
-Las advertencias no detienen la compilación pero indican posibles inconsistencias en el nivel:
-
-| Situación | Advertencia |
-|-----------|-------------|
-| NPC declarado pero sin posición en el mapa | `"El NPC 'X' fue declarado pero nunca posicionado en el mapa."` |
-| Arma declarada sin `weaponLogic` asignado | `"El arma 'X' fue declarada pero no tiene un comportamiento asignado."` |
 
 ---
 
