@@ -36,7 +36,7 @@ Si te interesa saber mas del tema, puedes ver los tutoriales en:
 Es un lenguaje compilado con ANTLR y LLVM con el proposito de simplificar el proceso de desarrollo de niveles con raycasting.
 Su gramatica es directa, de tal forma que el usuario solo tiene que declarar variables y asignar texturas para poder realizar una prueba sencilla.
 
-#Ejemplo breve 
+# Ejemplo breve 
 ```
 // === Texturas de entorno ===
 sprite wall  -> 'wall.jpg'
