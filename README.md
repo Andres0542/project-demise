@@ -2,7 +2,7 @@
 
 Tecnologia de Raycasting simplificada incluso mas a la merced de usuarios de Python!!! Vuestra perturbada imaginacion es el limite
 
-#Disclaimer con codigo de Ejemplos
+# Disclaimer con codigo de Ejemplos
 
 Todos los codigos de RayCasting con Python son un intento mio siguiendo este tutorial de implementacion de raycasting en PyGame.
 Si te interesa saber mas del tema, puedes ver los tutoriales en: 
