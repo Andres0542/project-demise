@@ -11,6 +11,7 @@ Si te interesa saber mas del tema, puedes ver los tutoriales en:
 *  RayCasting: https://youtu.be/4gqPv7A_YRY?si=WLRq5uRCKcoZpoTK
 *  El ultimo ejemplo de RayCasting en donde el suelo se refleja es sacado directamente del Github en: https://github.com/FinFetChannel/RayCasting2021
 
+Tambien tener en cuenta que para el Trabajo Parcial. Las pruebas para el compilador en ANTLR4 se encuentran en la carpeta Gramatica. Y que en esta tambien se encuentra una carpeta llamada driver-copia en caso de que hallan problemas.
 ## 📋 Tabla de contenidos
 - [Disclaimer](#disclaimer-con-codigo-de-Ejemplos)
 - [Estructura general](#estructura-general)
