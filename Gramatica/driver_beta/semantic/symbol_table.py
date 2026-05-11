@@ -1,17 +1,14 @@
 import os
 from .errors import SemanticError
 # Comportamientos de arma válidos según WEAPON_LOGIC en Demise.g4.
-# IMPORTANTE: el .g4 define 'fist' (sin 's'), no 'fists'.
 VALID_WEAPON_BEHAVIORS = {
     "chainsaw", "fist", "pistol", "shotgun",
     "chaingun", "rocket_launcher", "energy_rifle", "BFG6000",
 }
 
-# Tipos de sprite válidos según SPRITE_TYPE en Demise.g4: 'wall' | 'floor' | 'sky'
-# (ceiling NO es un SPRITE_TYPE en la gramática; solo es target válido de filter)
+
 VALID_SPRITE_TYPES = {"wall", "floor", "sky"}
 
-# Targets válidos para filter() — validación semántica
 VALID_FILTER_TARGETS = {"floor", "ceiling"}
 
 
