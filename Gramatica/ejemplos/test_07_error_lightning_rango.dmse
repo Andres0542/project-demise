@@ -1,0 +1,4 @@
+// TEST 07 - Valor de iluminación fuera del rango permitido (0-100)
+// Error esperado: LightningRangeError para valor 150 en línea 3
+
+lightning -> 150

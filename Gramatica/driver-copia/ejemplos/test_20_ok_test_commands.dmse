@@ -1,0 +1,6 @@
+// TEST 20 - Los tres testCommand válidos en secuencia
+// Resultado esperado: OK, 0 errores, 0 advertencias
+
+floorcasting_test
+raycasting_test
+raycasting_maze_test

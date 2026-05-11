@@ -1,0 +1,4 @@
+// TEST 19a - Lightning en el límite inferior exacto (0)
+// Resultado esperado: OK
+
+lightning -> 0

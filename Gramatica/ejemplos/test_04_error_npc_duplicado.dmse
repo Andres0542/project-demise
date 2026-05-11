@@ -1,0 +1,6 @@
+// TEST 04 - NPC declarado dos veces con el mismo nombre
+// Error esperado: DuplicateNPCError para 'imp' en línea 4
+
+npc imp -> 'Imp.jpg'
+npc Cacodemon -> 'Cacodemon.jpg'
+npc imp -> 'Imp2.jpg'

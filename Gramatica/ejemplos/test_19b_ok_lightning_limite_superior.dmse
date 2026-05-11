@@ -1,0 +1,4 @@
+// TEST 19b - Lightning en el límite superior exacto (100)
+// Resultado esperado: OK
+
+lightning -> 100
