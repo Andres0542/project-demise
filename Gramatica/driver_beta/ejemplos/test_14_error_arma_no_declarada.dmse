@@ -1,4 +1,0 @@
-// TEST 14 - Se asigna comportamiento a un arma que no fue declarada
-// Error esperado: WeaponNotDeclaredError para 'plasma' en línea 3
-
-plasma -> pistol

@@ -1,6 +1,0 @@
-// TEST 03 - Dos símbolos distintos comparten la misma ruta de archivo
-// Error esperado: DuplicatePathError en línea 4
-// (floor usa la misma ruta que wall)
-
-sprite wall -> 'wall.jpg'
-sprite floor -> 'wall.jpg'

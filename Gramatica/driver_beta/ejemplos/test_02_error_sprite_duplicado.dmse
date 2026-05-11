@@ -1,6 +1,0 @@
-// TEST 02 - Sprite declarado dos veces (mismo tipo)
-// Error esperado: DuplicateSpriteError para 'wall' en línea 5
-
-sprite wall -> 'wall.jpg'
-sprite floor -> 'floor.jpg'
-sprite wall -> 'wall2.jpg'

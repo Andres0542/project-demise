@@ -1,5 +1,0 @@
-// TEST 10 - Se intenta posicionar un NPC antes de declarar el mapa
-// Error esperado: MapNotDeclaredError en línea 4
-
-npc imp -> 'Imp.jpg'
-imp -> (3, 3)

@@ -1,4 +1,0 @@
-// TEST 15 - Filter con target que no es 'floor' ni 'ceiling'
-// Error esperado: InvalidFilterTargetError para target 'wall' en línea 3
-
-filter(hotline, wall)

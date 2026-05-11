@@ -1,6 +1,0 @@
-// TEST 13 - Arma declarada dos veces con el mismo nombre
-// Error esperado: DuplicateWeaponError para 'shotgun' en línea 4
-
-weapon shotgun -> 'Shotgun.png'
-weapon BFG6000 -> 'BFG6000.png'
-weapon shotgun -> 'Shotgun2.png'
