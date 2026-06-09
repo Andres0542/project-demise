@@ -1,0 +1,5 @@
+// TEST 08 - Iluminación declarada más de una vez
+// Error esperado: DuplicateLightningError en línea 4
+
+lightning -> 50
+lightning -> 75

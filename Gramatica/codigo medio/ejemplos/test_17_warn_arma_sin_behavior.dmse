@@ -1,0 +1,9 @@
+// TEST 17 - Arma declarada pero sin weaponLogic asignado
+// Resultado esperado: 0 errores semánticos
+// Advertencia esperada: arma 'BFG6000' sin comportamiento
+
+weapon shotgun -> 'Shotgun.png'
+weapon BFG6000 -> 'BFG6000.png'
+
+shotgun -> shotgun
+// BFG6000 no tiene weaponLogic → advertencia

@@ -1,8 +1,0 @@
-sprite floor -> 'floor.png'
-sprite ceiling -> 'ceiling.png'
-sprite wall -> 'wall.png'
-
-reflexing_floor
-
-raycasting_maze_test
-//Prueba del proyecto en un laberinto
