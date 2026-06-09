@@ -24,11 +24,6 @@ class DemiseVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DemiseParser#filter.
-    def visitFilter(self, ctx:DemiseParser.FilterContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by DemiseParser#npcDeclaration.
     def visitNpcDeclaration(self, ctx:DemiseParser.NpcDeclarationContext):
         return self.visitChildren(ctx)
@@ -49,11 +44,6 @@ class DemiseVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by DemiseParser#lightningDeclaration.
-    def visitLightningDeclaration(self, ctx:DemiseParser.LightningDeclarationContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by DemiseParser#uiDeclaration.
     def visitUiDeclaration(self, ctx:DemiseParser.UiDeclarationContext):
         return self.visitChildren(ctx)
@@ -66,16 +56,6 @@ class DemiseVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by DemiseParser#weaponDeclaration.
     def visitWeaponDeclaration(self, ctx:DemiseParser.WeaponDeclarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DemiseParser#weaponLogic.
-    def visitWeaponLogic(self, ctx:DemiseParser.WeaponLogicContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DemiseParser#testCommand.
-    def visitTestCommand(self, ctx:DemiseParser.TestCommandContext):
         return self.visitChildren(ctx)
 
 

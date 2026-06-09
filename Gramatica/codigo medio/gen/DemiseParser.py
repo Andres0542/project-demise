@@ -10,42 +10,33 @@ else:
 
 def serializedATN():
     return [
-        4,1,27,117,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
-        6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
-        1,0,5,0,30,8,0,10,0,12,0,33,9,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,50,8,1,1,2,1,2,1,2,1,2,1,2,1,3,1,
-        3,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,6,1,
-        6,1,6,4,6,76,8,6,11,6,12,6,77,1,6,1,6,1,7,1,7,4,7,84,8,7,11,7,12,
-        7,85,1,7,1,7,1,8,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,10,1,10,1,10,1,10,
-        1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,
-        1,13,1,13,1,13,0,0,14,0,2,4,6,8,10,12,14,16,18,20,22,24,26,0,1,1,
-        0,12,14,117,0,31,1,0,0,0,2,49,1,0,0,0,4,51,1,0,0,0,6,56,1,0,0,0,
-        8,63,1,0,0,0,10,68,1,0,0,0,12,72,1,0,0,0,14,81,1,0,0,0,16,89,1,0,
-        0,0,18,93,1,0,0,0,20,97,1,0,0,0,22,105,1,0,0,0,24,110,1,0,0,0,26,
-        114,1,0,0,0,28,30,3,2,1,0,29,28,1,0,0,0,30,33,1,0,0,0,31,29,1,0,
-        0,0,31,32,1,0,0,0,32,34,1,0,0,0,33,31,1,0,0,0,34,35,5,0,0,1,35,1,
-        1,0,0,0,36,50,3,4,2,0,37,50,3,12,6,0,38,50,3,8,4,0,39,50,3,20,10,
-        0,40,50,3,10,5,0,41,50,3,22,11,0,42,50,3,24,12,0,43,50,3,6,3,0,44,
-        50,3,18,9,0,45,50,3,16,8,0,46,50,3,26,13,0,47,50,5,25,0,0,48,50,
-        5,26,0,0,49,36,1,0,0,0,49,37,1,0,0,0,49,38,1,0,0,0,49,39,1,0,0,0,
-        49,40,1,0,0,0,49,41,1,0,0,0,49,42,1,0,0,0,49,43,1,0,0,0,49,44,1,
-        0,0,0,49,45,1,0,0,0,49,46,1,0,0,0,49,47,1,0,0,0,49,48,1,0,0,0,50,
-        3,1,0,0,0,51,52,5,1,0,0,52,53,5,2,0,0,53,54,5,15,0,0,54,55,5,23,
-        0,0,55,5,1,0,0,0,56,57,5,3,0,0,57,58,5,16,0,0,58,59,5,4,0,0,59,60,
-        5,20,0,0,60,61,5,2,0,0,61,62,5,17,0,0,62,7,1,0,0,0,63,64,5,5,0,0,
-        64,65,5,24,0,0,65,66,5,15,0,0,66,67,5,23,0,0,67,9,1,0,0,0,68,69,
-        5,6,0,0,69,70,5,15,0,0,70,71,5,23,0,0,71,11,1,0,0,0,72,73,5,7,0,
-        0,73,75,5,15,0,0,74,76,3,14,7,0,75,74,1,0,0,0,76,77,1,0,0,0,77,75,
-        1,0,0,0,77,78,1,0,0,0,78,79,1,0,0,0,79,80,5,21,0,0,80,13,1,0,0,0,
-        81,83,5,18,0,0,82,84,5,22,0,0,83,82,1,0,0,0,84,85,1,0,0,0,85,83,
-        1,0,0,0,85,86,1,0,0,0,86,87,1,0,0,0,87,88,5,19,0,0,88,15,1,0,0,0,
-        89,90,5,8,0,0,90,91,5,15,0,0,91,92,5,22,0,0,92,17,1,0,0,0,93,94,
-        5,9,0,0,94,95,5,15,0,0,95,96,5,23,0,0,96,19,1,0,0,0,97,98,5,24,0,
-        0,98,99,5,15,0,0,99,100,5,16,0,0,100,101,5,22,0,0,101,102,5,20,0,
-        0,102,103,5,22,0,0,103,104,5,17,0,0,104,21,1,0,0,0,105,106,5,10,
-        0,0,106,107,5,24,0,0,107,108,5,15,0,0,108,109,5,23,0,0,109,23,1,
-        0,0,0,110,111,5,24,0,0,111,112,5,15,0,0,112,113,5,11,0,0,113,25,
-        1,0,0,0,114,115,7,0,0,0,115,27,1,0,0,0,4,31,49,77,85
+        4,1,21,88,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,2,8,7,8,2,9,7,9,1,0,5,0,22,8,0,10,0,12,0,25,9,0,1,0,1,
+        0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,38,8,1,1,2,1,2,1,2,1,2,
+        1,2,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,5,1,5,1,5,4,5,57,8,5,11,
+        5,12,5,58,1,5,1,5,1,6,1,6,4,6,65,8,6,11,6,12,6,66,1,6,1,6,1,7,1,
+        7,1,7,1,7,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,1,
+        9,0,0,10,0,2,4,6,8,10,12,14,16,18,0,0,88,0,23,1,0,0,0,2,37,1,0,0,
+        0,4,39,1,0,0,0,6,44,1,0,0,0,8,49,1,0,0,0,10,53,1,0,0,0,12,62,1,0,
+        0,0,14,70,1,0,0,0,16,74,1,0,0,0,18,82,1,0,0,0,20,22,3,2,1,0,21,20,
+        1,0,0,0,22,25,1,0,0,0,23,21,1,0,0,0,23,24,1,0,0,0,24,26,1,0,0,0,
+        25,23,1,0,0,0,26,27,5,0,0,1,27,1,1,0,0,0,28,38,3,4,2,0,29,38,3,10,
+        5,0,30,38,3,6,3,0,31,38,3,16,8,0,32,38,3,8,4,0,33,38,3,18,9,0,34,
+        38,3,14,7,0,35,38,5,19,0,0,36,38,5,20,0,0,37,28,1,0,0,0,37,29,1,
+        0,0,0,37,30,1,0,0,0,37,31,1,0,0,0,37,32,1,0,0,0,37,33,1,0,0,0,37,
+        34,1,0,0,0,37,35,1,0,0,0,37,36,1,0,0,0,38,3,1,0,0,0,39,40,5,1,0,
+        0,40,41,5,2,0,0,41,42,5,9,0,0,42,43,5,17,0,0,43,5,1,0,0,0,44,45,
+        5,3,0,0,45,46,5,18,0,0,46,47,5,9,0,0,47,48,5,17,0,0,48,7,1,0,0,0,
+        49,50,5,4,0,0,50,51,5,9,0,0,51,52,5,17,0,0,52,9,1,0,0,0,53,54,5,
+        5,0,0,54,56,5,9,0,0,55,57,3,12,6,0,56,55,1,0,0,0,57,58,1,0,0,0,58,
+        56,1,0,0,0,58,59,1,0,0,0,59,60,1,0,0,0,60,61,5,15,0,0,61,11,1,0,
+        0,0,62,64,5,12,0,0,63,65,5,16,0,0,64,63,1,0,0,0,65,66,1,0,0,0,66,
+        64,1,0,0,0,66,67,1,0,0,0,67,68,1,0,0,0,68,69,5,13,0,0,69,13,1,0,
+        0,0,70,71,5,6,0,0,71,72,5,9,0,0,72,73,5,17,0,0,73,15,1,0,0,0,74,
+        75,5,18,0,0,75,76,5,9,0,0,76,77,5,10,0,0,77,78,5,16,0,0,78,79,5,
+        14,0,0,79,80,5,16,0,0,80,81,5,11,0,0,81,17,1,0,0,0,82,83,5,7,0,0,
+        83,84,5,18,0,0,84,85,5,9,0,0,85,86,5,17,0,0,86,19,1,0,0,0,4,23,37,
+        58,66
     ]
 
 class DemiseParser ( Parser ):
@@ -58,67 +49,53 @@ class DemiseParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'sprite'", "<INVALID>", "'filter'", "<INVALID>", 
-                     "'npc'", "'music'", "'map'", "'lightning'", "'UI'", 
-                     "'weapon'", "<INVALID>", "'floorcasting_test'", "'raycasting_test'", 
-                     "'raycasting_maze_test'", "'->'", "'('", "')'", "'['", 
-                     "']'", "','", "';'" ]
+    literalNames = [ "<INVALID>", "'sprite'", "<INVALID>", "'npc'", "'music'", 
+                     "'map'", "'UI'", "'weapon'", "<INVALID>", "'->'", "'('", 
+                     "')'", "'['", "']'", "','", "';'" ]
 
-    symbolicNames = [ "<INVALID>", "SPRITE", "SPRITE_TYPE", "FILTER", "FILTER_TYPE", 
-                      "NPC", "MUSIC", "MAP", "LIGHTNING", "UI", "WEAPON", 
-                      "WEAPON_LOGIC", "FLOORCASTING_TEST", "RAYCASTING_TEST", 
-                      "RAYCASTING_MAZE_TEST", "ARROW", "LPAREN", "RPAREN", 
-                      "LBRACKET", "RBRACKET", "COMMA", "SEMICOLON", "INTEGER", 
-                      "STRING_LITERAL", "ID", "COMENTARIO", "ESPACIO", "WS" ]
+    symbolicNames = [ "<INVALID>", "SPRITE", "SPRITE_TYPE", "NPC", "MUSIC", 
+                      "MAP", "UI", "WEAPON", "WEAPON_LOGIC", "ARROW", "LPAREN", 
+                      "RPAREN", "LBRACKET", "RBRACKET", "COMMA", "SEMICOLON", 
+                      "INTEGER", "STRING_LITERAL", "ID", "COMENTARIO", "ESPACIO", 
+                      "WS" ]
 
     RULE_program = 0
     RULE_statement = 1
     RULE_spriteDeclaration = 2
-    RULE_filter = 3
-    RULE_npcDeclaration = 4
-    RULE_musicDeclaration = 5
-    RULE_mapDeclaration = 6
-    RULE_mapRow = 7
-    RULE_lightningDeclaration = 8
-    RULE_uiDeclaration = 9
-    RULE_npcPositioning = 10
-    RULE_weaponDeclaration = 11
-    RULE_weaponLogic = 12
-    RULE_testCommand = 13
+    RULE_npcDeclaration = 3
+    RULE_musicDeclaration = 4
+    RULE_mapDeclaration = 5
+    RULE_mapRow = 6
+    RULE_uiDeclaration = 7
+    RULE_npcPositioning = 8
+    RULE_weaponDeclaration = 9
 
-    ruleNames =  [ "program", "statement", "spriteDeclaration", "filter", 
-                   "npcDeclaration", "musicDeclaration", "mapDeclaration", 
-                   "mapRow", "lightningDeclaration", "uiDeclaration", "npcPositioning", 
-                   "weaponDeclaration", "weaponLogic", "testCommand" ]
+    ruleNames =  [ "program", "statement", "spriteDeclaration", "npcDeclaration", 
+                   "musicDeclaration", "mapDeclaration", "mapRow", "uiDeclaration", 
+                   "npcPositioning", "weaponDeclaration" ]
 
     EOF = Token.EOF
     SPRITE=1
     SPRITE_TYPE=2
-    FILTER=3
-    FILTER_TYPE=4
-    NPC=5
-    MUSIC=6
-    MAP=7
-    LIGHTNING=8
-    UI=9
-    WEAPON=10
-    WEAPON_LOGIC=11
-    FLOORCASTING_TEST=12
-    RAYCASTING_TEST=13
-    RAYCASTING_MAZE_TEST=14
-    ARROW=15
-    LPAREN=16
-    RPAREN=17
-    LBRACKET=18
-    RBRACKET=19
-    COMMA=20
-    SEMICOLON=21
-    INTEGER=22
-    STRING_LITERAL=23
-    ID=24
-    COMENTARIO=25
-    ESPACIO=26
-    WS=27
+    NPC=3
+    MUSIC=4
+    MAP=5
+    UI=6
+    WEAPON=7
+    WEAPON_LOGIC=8
+    ARROW=9
+    LPAREN=10
+    RPAREN=11
+    LBRACKET=12
+    RBRACKET=13
+    COMMA=14
+    SEMICOLON=15
+    INTEGER=16
+    STRING_LITERAL=17
+    ID=18
+    COMENTARIO=19
+    ESPACIO=20
+    WS=21
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -173,17 +150,17 @@ class DemiseParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 31
+            self.state = 23
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 117471210) != 0):
-                self.state = 28
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1835258) != 0):
+                self.state = 20
                 self.statement()
-                self.state = 33
+                self.state = 25
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 34
+            self.state = 26
             self.match(DemiseParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -225,24 +202,8 @@ class DemiseParser ( Parser ):
             return self.getTypedRuleContext(DemiseParser.WeaponDeclarationContext,0)
 
 
-        def weaponLogic(self):
-            return self.getTypedRuleContext(DemiseParser.WeaponLogicContext,0)
-
-
-        def filter_(self):
-            return self.getTypedRuleContext(DemiseParser.FilterContext,0)
-
-
         def uiDeclaration(self):
             return self.getTypedRuleContext(DemiseParser.UiDeclarationContext,0)
-
-
-        def lightningDeclaration(self):
-            return self.getTypedRuleContext(DemiseParser.LightningDeclarationContext,0)
-
-
-        def testCommand(self):
-            return self.getTypedRuleContext(DemiseParser.TestCommandContext,0)
 
 
         def COMENTARIO(self):
@@ -276,87 +237,56 @@ class DemiseParser ( Parser ):
         localctx = DemiseParser.StatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_statement)
         try:
-            self.state = 49
+            self.state = 37
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
-            if la_ == 1:
+            token = self._input.LA(1)
+            if token in [1]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 36
+                self.state = 28
                 self.spriteDeclaration()
                 pass
-
-            elif la_ == 2:
+            elif token in [5]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 37
+                self.state = 29
                 self.mapDeclaration()
                 pass
-
-            elif la_ == 3:
+            elif token in [3]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 38
+                self.state = 30
                 self.npcDeclaration()
                 pass
-
-            elif la_ == 4:
+            elif token in [18]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 39
+                self.state = 31
                 self.npcPositioning()
                 pass
-
-            elif la_ == 5:
+            elif token in [4]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 40
+                self.state = 32
                 self.musicDeclaration()
                 pass
-
-            elif la_ == 6:
+            elif token in [7]:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 41
+                self.state = 33
                 self.weaponDeclaration()
                 pass
-
-            elif la_ == 7:
+            elif token in [6]:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 42
-                self.weaponLogic()
-                pass
-
-            elif la_ == 8:
-                self.enterOuterAlt(localctx, 8)
-                self.state = 43
-                self.filter_()
-                pass
-
-            elif la_ == 9:
-                self.enterOuterAlt(localctx, 9)
-                self.state = 44
+                self.state = 34
                 self.uiDeclaration()
                 pass
-
-            elif la_ == 10:
-                self.enterOuterAlt(localctx, 10)
-                self.state = 45
-                self.lightningDeclaration()
-                pass
-
-            elif la_ == 11:
-                self.enterOuterAlt(localctx, 11)
-                self.state = 46
-                self.testCommand()
-                pass
-
-            elif la_ == 12:
-                self.enterOuterAlt(localctx, 12)
-                self.state = 47
+            elif token in [19]:
+                self.enterOuterAlt(localctx, 8)
+                self.state = 35
                 self.match(DemiseParser.COMENTARIO)
                 pass
-
-            elif la_ == 13:
-                self.enterOuterAlt(localctx, 13)
-                self.state = 48
+            elif token in [20]:
+                self.enterOuterAlt(localctx, 9)
+                self.state = 36
                 self.match(DemiseParser.ESPACIO)
                 pass
-
+            else:
+                raise NoViableAltException(self)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -412,86 +342,14 @@ class DemiseParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_spriteDeclaration)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 51
+            self.state = 39
             self.match(DemiseParser.SPRITE)
-            self.state = 52
+            self.state = 40
             self.match(DemiseParser.SPRITE_TYPE)
-            self.state = 53
+            self.state = 41
             self.match(DemiseParser.ARROW)
-            self.state = 54
+            self.state = 42
             self.match(DemiseParser.STRING_LITERAL)
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class FilterContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def FILTER(self):
-            return self.getToken(DemiseParser.FILTER, 0)
-
-        def LPAREN(self):
-            return self.getToken(DemiseParser.LPAREN, 0)
-
-        def FILTER_TYPE(self):
-            return self.getToken(DemiseParser.FILTER_TYPE, 0)
-
-        def COMMA(self):
-            return self.getToken(DemiseParser.COMMA, 0)
-
-        def SPRITE_TYPE(self):
-            return self.getToken(DemiseParser.SPRITE_TYPE, 0)
-
-        def RPAREN(self):
-            return self.getToken(DemiseParser.RPAREN, 0)
-
-        def getRuleIndex(self):
-            return DemiseParser.RULE_filter
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFilter" ):
-                listener.enterFilter(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFilter" ):
-                listener.exitFilter(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFilter" ):
-                return visitor.visitFilter(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def filter_(self):
-
-        localctx = DemiseParser.FilterContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_filter)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 56
-            self.match(DemiseParser.FILTER)
-            self.state = 57
-            self.match(DemiseParser.LPAREN)
-            self.state = 58
-            self.match(DemiseParser.FILTER_TYPE)
-            self.state = 59
-            self.match(DemiseParser.COMMA)
-            self.state = 60
-            self.match(DemiseParser.SPRITE_TYPE)
-            self.state = 61
-            self.match(DemiseParser.RPAREN)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -543,16 +401,16 @@ class DemiseParser ( Parser ):
     def npcDeclaration(self):
 
         localctx = DemiseParser.NpcDeclarationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 8, self.RULE_npcDeclaration)
+        self.enterRule(localctx, 6, self.RULE_npcDeclaration)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 63
+            self.state = 44
             self.match(DemiseParser.NPC)
-            self.state = 64
+            self.state = 45
             self.match(DemiseParser.ID)
-            self.state = 65
+            self.state = 46
             self.match(DemiseParser.ARROW)
-            self.state = 66
+            self.state = 47
             self.match(DemiseParser.STRING_LITERAL)
         except RecognitionException as re:
             localctx.exception = re
@@ -602,14 +460,14 @@ class DemiseParser ( Parser ):
     def musicDeclaration(self):
 
         localctx = DemiseParser.MusicDeclarationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 10, self.RULE_musicDeclaration)
+        self.enterRule(localctx, 8, self.RULE_musicDeclaration)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 68
+            self.state = 49
             self.match(DemiseParser.MUSIC)
-            self.state = 69
+            self.state = 50
             self.match(DemiseParser.ARROW)
-            self.state = 70
+            self.state = 51
             self.match(DemiseParser.STRING_LITERAL)
         except RecognitionException as re:
             localctx.exception = re
@@ -666,27 +524,27 @@ class DemiseParser ( Parser ):
     def mapDeclaration(self):
 
         localctx = DemiseParser.MapDeclarationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 12, self.RULE_mapDeclaration)
+        self.enterRule(localctx, 10, self.RULE_mapDeclaration)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 72
+            self.state = 53
             self.match(DemiseParser.MAP)
-            self.state = 73
+            self.state = 54
             self.match(DemiseParser.ARROW)
-            self.state = 75 
+            self.state = 56 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 74
+                self.state = 55
                 self.mapRow()
-                self.state = 77 
+                self.state = 58 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==18):
+                if not (_la==12):
                     break
 
-            self.state = 79
+            self.state = 60
             self.match(DemiseParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -739,83 +597,26 @@ class DemiseParser ( Parser ):
     def mapRow(self):
 
         localctx = DemiseParser.MapRowContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 14, self.RULE_mapRow)
+        self.enterRule(localctx, 12, self.RULE_mapRow)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 81
+            self.state = 62
             self.match(DemiseParser.LBRACKET)
-            self.state = 83 
+            self.state = 64 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 82
+                self.state = 63
                 self.match(DemiseParser.INTEGER)
-                self.state = 85 
+                self.state = 66 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==22):
+                if not (_la==16):
                     break
 
-            self.state = 87
+            self.state = 68
             self.match(DemiseParser.RBRACKET)
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class LightningDeclarationContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def LIGHTNING(self):
-            return self.getToken(DemiseParser.LIGHTNING, 0)
-
-        def ARROW(self):
-            return self.getToken(DemiseParser.ARROW, 0)
-
-        def INTEGER(self):
-            return self.getToken(DemiseParser.INTEGER, 0)
-
-        def getRuleIndex(self):
-            return DemiseParser.RULE_lightningDeclaration
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLightningDeclaration" ):
-                listener.enterLightningDeclaration(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLightningDeclaration" ):
-                listener.exitLightningDeclaration(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLightningDeclaration" ):
-                return visitor.visitLightningDeclaration(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def lightningDeclaration(self):
-
-        localctx = DemiseParser.LightningDeclarationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 16, self.RULE_lightningDeclaration)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 89
-            self.match(DemiseParser.LIGHTNING)
-            self.state = 90
-            self.match(DemiseParser.ARROW)
-            self.state = 91
-            self.match(DemiseParser.INTEGER)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -864,14 +665,14 @@ class DemiseParser ( Parser ):
     def uiDeclaration(self):
 
         localctx = DemiseParser.UiDeclarationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_uiDeclaration)
+        self.enterRule(localctx, 14, self.RULE_uiDeclaration)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 93
+            self.state = 70
             self.match(DemiseParser.UI)
-            self.state = 94
+            self.state = 71
             self.match(DemiseParser.ARROW)
-            self.state = 95
+            self.state = 72
             self.match(DemiseParser.STRING_LITERAL)
         except RecognitionException as re:
             localctx.exception = re
@@ -933,22 +734,22 @@ class DemiseParser ( Parser ):
     def npcPositioning(self):
 
         localctx = DemiseParser.NpcPositioningContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 20, self.RULE_npcPositioning)
+        self.enterRule(localctx, 16, self.RULE_npcPositioning)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 97
+            self.state = 74
             self.match(DemiseParser.ID)
-            self.state = 98
+            self.state = 75
             self.match(DemiseParser.ARROW)
-            self.state = 99
+            self.state = 76
             self.match(DemiseParser.LPAREN)
-            self.state = 100
+            self.state = 77
             self.match(DemiseParser.INTEGER)
-            self.state = 101
+            self.state = 78
             self.match(DemiseParser.COMMA)
-            self.state = 102
+            self.state = 79
             self.match(DemiseParser.INTEGER)
-            self.state = 103
+            self.state = 80
             self.match(DemiseParser.RPAREN)
         except RecognitionException as re:
             localctx.exception = re
@@ -1001,133 +802,17 @@ class DemiseParser ( Parser ):
     def weaponDeclaration(self):
 
         localctx = DemiseParser.WeaponDeclarationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 22, self.RULE_weaponDeclaration)
+        self.enterRule(localctx, 18, self.RULE_weaponDeclaration)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 105
+            self.state = 82
             self.match(DemiseParser.WEAPON)
-            self.state = 106
+            self.state = 83
             self.match(DemiseParser.ID)
-            self.state = 107
+            self.state = 84
             self.match(DemiseParser.ARROW)
-            self.state = 108
+            self.state = 85
             self.match(DemiseParser.STRING_LITERAL)
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class WeaponLogicContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def ID(self):
-            return self.getToken(DemiseParser.ID, 0)
-
-        def ARROW(self):
-            return self.getToken(DemiseParser.ARROW, 0)
-
-        def WEAPON_LOGIC(self):
-            return self.getToken(DemiseParser.WEAPON_LOGIC, 0)
-
-        def getRuleIndex(self):
-            return DemiseParser.RULE_weaponLogic
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterWeaponLogic" ):
-                listener.enterWeaponLogic(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitWeaponLogic" ):
-                listener.exitWeaponLogic(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitWeaponLogic" ):
-                return visitor.visitWeaponLogic(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def weaponLogic(self):
-
-        localctx = DemiseParser.WeaponLogicContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 24, self.RULE_weaponLogic)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 110
-            self.match(DemiseParser.ID)
-            self.state = 111
-            self.match(DemiseParser.ARROW)
-            self.state = 112
-            self.match(DemiseParser.WEAPON_LOGIC)
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class TestCommandContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def FLOORCASTING_TEST(self):
-            return self.getToken(DemiseParser.FLOORCASTING_TEST, 0)
-
-        def RAYCASTING_TEST(self):
-            return self.getToken(DemiseParser.RAYCASTING_TEST, 0)
-
-        def RAYCASTING_MAZE_TEST(self):
-            return self.getToken(DemiseParser.RAYCASTING_MAZE_TEST, 0)
-
-        def getRuleIndex(self):
-            return DemiseParser.RULE_testCommand
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTestCommand" ):
-                listener.enterTestCommand(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTestCommand" ):
-                listener.exitTestCommand(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTestCommand" ):
-                return visitor.visitTestCommand(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def testCommand(self):
-
-        localctx = DemiseParser.TestCommandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 26, self.RULE_testCommand)
-        self._la = 0 # Token type
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 114
-            _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 28672) != 0)):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

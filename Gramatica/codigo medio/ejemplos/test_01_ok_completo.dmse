@@ -5,9 +5,6 @@ sprite wall -> '/home/ubuntu/Documents/project-demise/Gramatica/driver_beta/ejem
 sprite floor -> '/home/ubuntu/Documents/project-demise/Gramatica/driver_beta/ejemplos/floor.jpg'
 sprite sky -> '/home/ubuntu/Documents/project-demise/Gramatica/driver_beta/ejemplos/skybox.jpg'
 
-filter(green_goo, sky)
-filter(green_goo, floor)
-
 npc imp -> 'Imp.jpg'
 npc Cacodemon -> 'Cacodemon.jpg'
 

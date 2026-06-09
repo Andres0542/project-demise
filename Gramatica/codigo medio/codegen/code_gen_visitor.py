@@ -1,7 +1,8 @@
 from llvmlite import ir, binding
-from gen.AritVisitor import AritVisitor
+from gen.DemiseVisitor import DemiseVisitor
+import re
 
-class CodeGenVisitor(AritVisitor):
+class CodeGenVisitor(DemiseVisitor):
 
     def __init__(self):
         # Tipo entero de 32 bits (el único tipo de nuestro lenguaje)
@@ -66,17 +67,49 @@ class CodeGenVisitor(AritVisitor):
         if tipo not in self.type:
             raise Exception(f"Tipo de sprite desconocido: {tipo}")
         else:
+            print(f"Generando código para sprite: {sprite} de tipo {tipo} con dirección {direccion}")
             #Programar logica aqui
         self.builder.call(self.printf, [fmt_ptr, valor])
 
-    def visitMap(self, ctx):
-        mapa = ctx.mapRow().getText()
+    def visitMapDeclaration(self, ctx):
+        grid = []
+        for row_ctx in ctx.mapRow():
+            row = [int(tok.getText()) for tok in row_ctx.INTEGER()]
+            if row:
+                grid.append(row)
+            if not grid:
+                raise Exception("El mapa está vacío o no contiene números válidos")
+                
+        self.filas = len(grid)
+        self.columnas = len(grid[0]) if self.filas > 0 else 0
+        valores_planos = []
+        for fila in grid:
+            valores_planos.extend(fila)
 
-        if not mapa:
-            raise Exception("Mapa vacío")
-        else:
-            #Programar logica aqui
-        self.builder.call(self.printf, [fmt_ptr, valor])
+        total_elementos = len(valores_planos)
+        i32_type = ir.IntType(32)
+        
+        array_type = ir.ArrayType(i32_type, total_elementos)
+        llvm_constants = [ir.Constant(i32_type, val) for val in valores_planos]
+        array_initializer = ir.Constant(array_type, llvm_constants)
+        
+        global_map = ir.GlobalVariable(self.module, array_type, name="mapW")
+        global_map.initializer = array_initializer
+        global_map.linkage = 'internal'  # Corregido: permite inicializar en el mismo módulo
+        global_map.align = 16
+        
+        self.global_map = global_map 
+        zero = ir.Constant(i32_type, 0)
+        
+        fmt_ptr = self.builder.gep(self.fmt_global, [zero, zero])
+        
+        for i in range(total_elementos):
+            indice = ir.Constant(i32_type, i)
+            ptr_elemento = self.builder.gep(global_map, [zero, indice])
+            valor_cargado = self.builder.load(ptr_elemento)
+            self.builder.call(self.printf, [fmt_ptr, valor_cargado])
+        
+        return self.visitChildren(ctx)
     
     def visitMusic(self, ctx):
         direccion = ctx.STRING_LITERAL().getText().strip('"')
@@ -84,6 +117,7 @@ class CodeGenVisitor(AritVisitor):
         if not direccion:
             raise Exception("Dirección de música vacía")
         else:
+            print(f"Generando código para música con dirección {direccion}")
             #Programar logica aqui
         self.builder.call(self.printf, [fmt_ptr, valor])
 
@@ -96,6 +130,7 @@ class CodeGenVisitor(AritVisitor):
         elif not direccion:
             raise Exception("Dirección de NPC vacía")
         else:
+            print(f"Generando código para NPC: {npc} con dirección {direccion}")    
             #Programar logica aqui
         self.builder.call(self.printf, [fmt_ptr, valor])
 
@@ -109,6 +144,7 @@ class CodeGenVisitor(AritVisitor):
         elif x < 0 or y < 0:
             raise Exception("Coordenadas de NPC no pueden ser negativas")
         else:
+            print(f"Generando código para posicionar NPC: {npc} en coordenadas ({x}, {y})")
             #Programar logica aqui
         self.builder.call(self.printf, [fmt_ptr, valor])
     
@@ -121,6 +157,7 @@ class CodeGenVisitor(AritVisitor):
         elif not direccion:
             raise Exception("Dirección de arma vacía")
         else:
+            print(f"Generando código para arma: {weapon} con dirección {direccion}")
             #Programar logica aqui
         self.builder.call(self.printf, [fmt_ptr, valor])
 
@@ -130,6 +167,7 @@ class CodeGenVisitor(AritVisitor):
         if not direccion:
             raise Exception("Dirección de UI vacía")
         else:
+            print(f"Generando código para UI con dirección {direccion}")
             #Programar logica aqui
         self.builder.call(self.printf, [fmt_ptr, valor])
 

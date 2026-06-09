@@ -32,19 +32,6 @@ class SemanticVisitor(DemiseVisitor):
 
         return self.visitChildren(ctx)
 
-    def visitFilter(self, ctx: DemiseParser.FilterContext):
-        filter_name = ctx.FILTER_TYPE().getText()  
-        target      = ctx.SPRITE_TYPE().getText()  
-        line = ctx.start.line
-
-        try:
-            self.symtab.declare_filter(filter_name, target, line)
-            print(f"Filtro registrado: '{filter_name}' sobre '{target}'")
-        except SemanticError as e:
-            self._error(e)
-
-        return self.visitChildren(ctx)
-
     def visitNpcDeclaration(self, ctx: DemiseParser.NpcDeclarationContext):
         name = ctx.ID().getText()           
         path = self._strip(ctx.STRING_LITERAL().getText())
@@ -89,18 +76,6 @@ class SemanticVisitor(DemiseVisitor):
 
         return self.visitChildren(ctx)
 
-    def visitLightningDeclaration(self, ctx: DemiseParser.LightningDeclarationContext):
-        value = int(ctx.INTEGER().getText())
-        line = ctx.start.line
-
-        try:
-            self.symtab.declare_lightning(value, line)
-            print(f"Iluminación registrada: {value}")
-        except SemanticError as e:
-            self._error(e)
-
-        return self.visitChildren(ctx)
-
     def visitUiDeclaration(self, ctx: DemiseParser.UiDeclarationContext):
         path = self._strip(ctx.STRING_LITERAL().getText())
         line = ctx.start.line
@@ -138,30 +113,6 @@ class SemanticVisitor(DemiseVisitor):
             print(f"Arma registrada: '{name}' | path='{path}'")
         except SemanticError as e:
             self._error(e)
-
-        return self.visitChildren(ctx)
-
-    def visitWeaponLogic(self, ctx: DemiseParser.WeaponLogicContext):
-        weapon_name = ctx.ID().getText()            
-        behavior    = ctx.WEAPON_LOGIC().getText()  
-        line = ctx.start.line
-
-        try:
-            self.symtab.declare_weapon_behavior(weapon_name, behavior, line)
-            print(f"Comportamiento de arma: '{weapon_name}' → '{behavior}'")
-        except SemanticError as e:
-            self._error(e)
-
-        return self.visitChildren(ctx)
-
-    def visitTestCommand(self, ctx: DemiseParser.TestCommandContext):
-        if ctx.FLOORCASTING_TEST():
-            print("Ejecutando test de floorcasting")
-            # Floorcasting().main()
-        elif ctx.RAYCASTING_TEST():
-            print("Ejecutando test de raycasting")
-        elif ctx.RAYCASTING_MAZE_TEST():
-            print("Ejecutando test de laberinto con raycasting")
 
         return self.visitChildren(ctx)
 

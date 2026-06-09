@@ -35,15 +35,6 @@ class DemiseListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by DemiseParser#filter.
-    def enterFilter(self, ctx:DemiseParser.FilterContext):
-        pass
-
-    # Exit a parse tree produced by DemiseParser#filter.
-    def exitFilter(self, ctx:DemiseParser.FilterContext):
-        pass
-
-
     # Enter a parse tree produced by DemiseParser#npcDeclaration.
     def enterNpcDeclaration(self, ctx:DemiseParser.NpcDeclarationContext):
         pass
@@ -80,15 +71,6 @@ class DemiseListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by DemiseParser#lightningDeclaration.
-    def enterLightningDeclaration(self, ctx:DemiseParser.LightningDeclarationContext):
-        pass
-
-    # Exit a parse tree produced by DemiseParser#lightningDeclaration.
-    def exitLightningDeclaration(self, ctx:DemiseParser.LightningDeclarationContext):
-        pass
-
-
     # Enter a parse tree produced by DemiseParser#uiDeclaration.
     def enterUiDeclaration(self, ctx:DemiseParser.UiDeclarationContext):
         pass
@@ -113,24 +95,6 @@ class DemiseListener(ParseTreeListener):
 
     # Exit a parse tree produced by DemiseParser#weaponDeclaration.
     def exitWeaponDeclaration(self, ctx:DemiseParser.WeaponDeclarationContext):
-        pass
-
-
-    # Enter a parse tree produced by DemiseParser#weaponLogic.
-    def enterWeaponLogic(self, ctx:DemiseParser.WeaponLogicContext):
-        pass
-
-    # Exit a parse tree produced by DemiseParser#weaponLogic.
-    def exitWeaponLogic(self, ctx:DemiseParser.WeaponLogicContext):
-        pass
-
-
-    # Enter a parse tree produced by DemiseParser#testCommand.
-    def enterTestCommand(self, ctx:DemiseParser.TestCommandContext):
-        pass
-
-    # Exit a parse tree produced by DemiseParser#testCommand.
-    def exitTestCommand(self, ctx:DemiseParser.TestCommandContext):
         pass
 
 
