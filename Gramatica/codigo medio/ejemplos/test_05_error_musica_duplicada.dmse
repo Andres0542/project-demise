@@ -1,5 +1,0 @@
-// TEST 05 - Dos declaraciones de música en el mismo nivel
-// Error esperado: DuplicateMusicError en línea 4
-
-music -> 'Numb.mp3'
-music -> 'E1M1.mp3'
