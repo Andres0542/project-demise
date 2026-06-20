@@ -12,17 +12,24 @@
 #include "Textures/title.ppm"
 #include "Textures/won.ppm"
 #include "Textures/lost.ppm"
+#include "Textures/sprites.ppm"
 float degToRad(float a) { return a*M_PI/180.0;}
 float FixAng(float a){ if(a>359){ a-=360;} if(a<0){ a+=360;} return a;}
-float distance(float ax, float ay, float bx, float by, float ang){ return cos(degToRad(ang))*(bx-ax)-sin(degToRad(ang))*(by-ay);}
+float distance(ax,ay,bx,by,ang){ return cos(degToRad(ang))*(bx-ax)-sin(degToRad(ang))*(by-ay);}
 float px,py,pdx,pdy,pa;
 float frame1,frame2,fps;
-
+int gameState=0, timer=0;
+float fade=0;
 typedef struct
 {
- int w,a,d,s;                     //button state on off
+ int w,a,d,s,space;                   //button state on off
 }ButtonKeys; ButtonKeys Keys;
 
+typedef struct{
+     int type; int state; int map; float  x,y,z;
+}sprite; sprite sp[4];
+
+int depth[120];
 //-----------------------------MAP----------------------------------------------
 #define mapX  8      //map width
 #define mapY  8      //map height
@@ -65,6 +72,55 @@ int mapC[]=          //ceiling
  0,0,0,0,0,0,0,0,	
 };
 
+void drawSprites(){
+     int x,y,s;
+     if(px<sp[0].x+30 && px>sp[0].x-30 && py<sp[0].y+30 && py>sp[0].y-30){ sp[0].state=0;} //check if player is close to sprite
+     if(px<sp[3].x+30 && px>sp[3].x-30 && py<sp[3].y+30 && py>sp[3].y-30){ gameState=4;} //check if player is close to sprite
+     
+     int spx=(int)sp[3].x>>6; int spy=(int)sp[3].y>>6; //check if sprite is in open space
+     int spx_add=(int)(sp[3].x+15)>>6; int spx_sub=(int)(sp[3].x-20)>>6;
+     int spy_add=(int)(sp[3].y+15)>>6; int spy_sub=(int)(sp[3].y-20)>>6;
+     if(sp[3].x>px && mapW[spy*8+spx_sub]==0) { sp[3].x-=0.5;}
+     if(sp[3].x<px && mapW[spy*8+spx_add]==0) { sp[3].x+=0.5;} 
+     if(sp[3].y>py && mapW[spy_sub*8+spx]==0) { sp[3].y-=0.5;}
+     if(sp[3].y<py && mapW[spy_add*8+spx]==0) { sp[3].y+=0.5;}
+     for(s=0;s<4;s++){
+          float sx= sp[s].x-px; 
+          float sy=sp[s].y-py;
+          float sz =sp[s].z;
+          //Player POV
+          float CS = cos(degToRad(pa)),SN = sin(degToRad(pa));
+          float a = sy*CS + sx*SN;
+          float b = sx*CS - sy*SN;
+          sx = a; sy = b;
+          sx=(sx*108.0/sy) + (120/2); 
+          sy=(sz*108.0/sy) + (80/2);
+          int scale = (32.0f*80.0f)/b;
+          if (scale<0 ){ scale=0;} if (scale>120){ scale=120;}
+
+          float t_x=0, t_y=31, t_x_step=31.5/(float)scale, t_y_step=32.0/(float)scale;
+          for(x=sx-scale/2;x<sx+scale/2;x++){
+               t_y=31;
+               for(y=0;y<scale;y++)
+               {
+                    if(sp[s].state==1 && x>0 && x<120 && b<depth[x]){
+                         int pixel=((int)t_y*32+(int)t_x)*3+(sp[s].map*32*32*3);
+                         int red   =sprites[pixel+0];
+                         int green =sprites[pixel+1];
+                         int blue  =sprites[pixel+2];
+                         if(red!=255, green!=0, blue!=255) {//dont draw if purple
+                           glPointSize(8); glColor3ub(red,green,blue); glBegin(GL_POINTS); glVertex2i(x*8,sy*8-y*8); glEnd(); //draw point 
+                         }
+                         t_y-=t_y_step; if(t_y<0){ t_y=0;}
+                    }
+               }
+               t_x+=t_x_step;
+          }
+     }
+     
+     
+     
+}
 void drawMap2D()
 {
  int x,y,xo,yo;
@@ -161,6 +217,7 @@ void drawRays2D()
   if(lineH>640){ ty_off=(lineH-640)/2.0; lineH=640;}                            //line height and limit
   int lineOff = 320 - (lineH>>1);                                               //line offset
 
+  depth[r]=disH; //save depth for sprite rendering
   //---draw walls---
   int y;
   float ty=ty_off*ty_step;//+hmt*32;
@@ -187,13 +244,13 @@ void drawRays2D()
  for(y=lineOff+lineH;y<640;y++)
  {
   float dy=y-(640/2.0), deg=degToRad(ra), raFix=cos(degToRad(FixAng(pa-ra)));
-  tx=px/2 + cos(deg)*158*32/dy/raFix;
-  ty=py/2 - sin(deg)*158*32/dy/raFix;
+  tx=px/2 + cos(deg)*158*2*32/dy/raFix;
+  ty=py/2 - sin(deg)*158*2*32/dy/raFix;
   int mp=mapF[(int)(ty/32.0)*mapX+(int)(tx/32.0)]*32*32;
   int pixel = (((int)(ty)&31)*32+((int)(tx)&31))*3+mp*3;
-  int red = Alt_Textures[pixel];
-  int g = Alt_Textures[pixel+1];
-  int b = Alt_Textures[pixel+2];
+  int red = Alt_Textures[pixel]*0.7;
+  int g = Alt_Textures[pixel+1]*0.7;
+  int b = Alt_Textures[pixel+2]*0.7;
   glPointSize(8); glColor3ub(red,g,b); glBegin(GL_POINTS); glVertex2i(r*8,y); glEnd();
   //ty+=ty_step;
   //float c=All_Textures[((int)(ty)&31)*32 + ((int)(tx)&31)+mp]*0.7;
@@ -211,7 +268,6 @@ void drawRays2D()
   if(mp>0){glPointSize(8); glColor3ub(red,g,b); glBegin(GL_POINTS); glVertex2i(r*8,640-y); glEnd();}
   //ty+=ty_step;
  }
- 
  ra=FixAng(ra-0.5);                                                               //go to next ray, 60 total
  }
 }//-----------------------------------------------------------------------------
@@ -222,8 +278,14 @@ void init()
  glClearColor(0.3,0.3,0.3,0);
  //gluOrtho2D(0,960,640,0);
  px=150; py=400; pa=90;
- pdx=cos(degToRad(pa)); pdy=-sin(degToRad(pa));                                 //init player
+ pdx=cos(degToRad(pa)); pdy=-sin(degToRad(pa));
+ mapW[19]=4;mapW[26]=4; //Cerrar puertas
+ sp[0].type=1; sp[0].state=1; sp[0].map=0; sp[0].x=1.5*64; sp[0].y=5*64; sp[0].z=20;
+ sp[1].type=2; sp[1].state=1; sp[1].map=1; sp[1].x=1.5*64; sp[1].y=5*64; sp[1].z=0;
+ sp[2].type=2; sp[2].state=1; sp[2].map=1; sp[2].x=3.5*64; sp[2].y=5*64; sp[2].z=0;
+ sp[3].type=3; sp[3].state=1; sp[3].map=2; sp[3].x=4.5*64; sp[3].y=5*64; sp[3].z=20;
 }
+
 
 void screen(int v){
      int x,y; int *T;
@@ -233,44 +295,51 @@ void screen(int v){
      for(y=0;y<80;y++){
            for(x=0;x<120;x++){
                 int pixel = (y*120+x)*3;
-                int red = T[pixel];
-                int g = T[pixel+1];
-                int b = T[pixel+2];
+                int red = T[pixel]*fade;
+                int g = T[pixel+1]*fade;
+                int b = T[pixel+2]*fade;
                 glPointSize(8); glColor3ub(red,g,b); glBegin(GL_POINTS); glVertex2i(x*8,y*8); glEnd();
            }
       }
+      if(fade<1.0f){ fade+=0.0005f*fps;} else{ fade=1.0f;}
 }
 
-int gameState=0, timer=0;
+void Movement(){
+ if(Keys.a==1){ pa+=0.2*fps; pa=FixAng(pa); pdx=cos(degToRad(pa)); pdy=-sin(degToRad(pa));} 	
+ if(Keys.d==1){ pa-=0.2*fps; pa=FixAng(pa); pdx=cos(degToRad(pa)); pdy=-sin(degToRad(pa));} 
+ int xo=0; if(pdx<0){ xo=-20;} else{ xo=20;}                                    //x offset to check map
+ int yo=0; if(pdy<0){ yo=-20;} else{ yo=20;}                                    //y offset to check map
+ int ipx=px/64.0, ipx_add_xo=(px+xo)/64.0, ipx_sub_xo=(px-xo)/64.0;             //x position and offset
+ int ipy=py/64.0, ipy_add_yo=(py+yo)/64.0, ipy_sub_yo=(py-yo)/64.0;             //y position and offset
+ if(Keys.w==1){
+     if(mapW[ipy*mapX        + ipx_add_xo]==0){ px+=pdx*0.2*fps;}
+     if(mapW[ipy_add_yo*mapX + ipx       ]==0){ py+=pdy*0.2*fps;}
+ }  //move forward                                                                
+ if(Keys.s==1){
+     if(mapW[ipy*mapX        + ipx_sub_xo]==0){ px-=pdx*0.2*fps;}
+     if(mapW[ipy_sub_yo*mapX + ipx       ]==0){ py-=pdy*0.2*fps;}
+ } //move backward 
+}
 void display()
 {  
  //frames per second
  frame2=glutGet(GLUT_ELAPSED_TIME); fps=(frame2-frame1); frame1=glutGet(GLUT_ELAPSED_TIME); 
 
- if (gameState==0){ init(); timer=0; gameState=1;}
- if (gameState==1){ screen(0);timer+=1*fps; if(timer>3000){ timer=0; gameState=2;}}
+ if (gameState==0){ init();fade=0;timer=0; gameState=1;}
+ if (gameState==1){ screen(0);timer+=1*fps; if(Keys.space==1){ timer=0; gameState=2;}}
  if (gameState==2){
-     //buttons
-     if(Keys.a==1){ pa+=0.2*fps; pa=FixAng(pa); pdx=cos(degToRad(pa)); pdy=-sin(degToRad(pa));} 	
-     if(Keys.d==1){ pa-=0.2*fps; pa=FixAng(pa); pdx=cos(degToRad(pa)); pdy=-sin(degToRad(pa));} 
-     int xo=0; if(pdx<0){ xo=-20;} else{ xo=20;}                                    //x offset to check map
-     int yo=0; if(pdy<0){ yo=-20;} else{ yo=20;}                                    //y offset to check map
-     int ipx=px/64.0, ipx_add_xo=(px+xo)/64.0, ipx_sub_xo=(px-xo)/64.0;             //x position and offset
-     int ipy=py/64.0, ipy_add_yo=(py+yo)/64.0, ipy_sub_yo=(py-yo)/64.0;             //y position and offset
-     if(Keys.w==1){
-          if(mapW[ipy*mapX        + ipx_add_xo]==0){ px+=pdx*0.2*fps;}
-          if(mapW[ipy_add_yo*mapX + ipx       ]==0){ py+=pdy*0.2*fps;}
-     }  //move forward                                                                
-     if(Keys.s==1){
-     if(mapW[ipy*mapX        + ipx_sub_xo]==0){ px-=pdx*0.2*fps;}
-     if(mapW[ipy_sub_yo*mapX + ipx       ]==0){ py-=pdy*0.2*fps;}
-     } //move backward 
+     Movement(); //move backward 
      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
      drawSky(); 
+      //win
      //drawMap2D();
      // //drawPlayer2D();
      drawRays2D();
+     drawSprites();
+     if((int)px>>6==1 && (int)py>>6==1){ fade=0;timer=0; gameState=3;} //win
  }
+ if (gameState==3){ screen(1); timer+=1*fps; if(timer>3000){ fade=0;timer=0; gameState=0;}}
+ if (gameState==4){ screen(2); timer+=1*fps; if(timer>3000){ fade=0;timer=0; gameState=0;}}
  glutPostRedisplay();
  glutSwapBuffers();  
 }
@@ -281,7 +350,7 @@ void ButtonDown(unsigned char key,int x,int y)                                  
  if(key=='d'){ Keys.d=1;} 
  if(key=='w'){ Keys.w=1;}
  if(key=='s'){ Keys.s=1;}
- if(key=='e')             //open doors
+ if(key=='e' && sp[0].state==0)             //open doors && sp[0].state==1
  { 
   int xo=0; if(pdx<0){ xo=-25;} else{ xo=25;}
   int yo=0; if(pdy<0){ yo=-25;} else{ yo=25;} 
@@ -289,7 +358,7 @@ void ButtonDown(unsigned char key,int x,int y)                                  
   int ipy=py/64.0, ipy_add_yo=(py+yo)/64.0;
   if(mapW[ipy_add_yo*mapX+ipx_add_xo]==4){ mapW[ipy_add_yo*mapX+ipx_add_xo]=0;}
  }
-
+ if(key==' '){ Keys.space=1;} //            
  glutPostRedisplay();
 }
 
@@ -299,6 +368,7 @@ void ButtonUp(unsigned char key,int x,int y)                                    
  if(key=='d'){ Keys.d=0;} 
  if(key=='w'){ Keys.w=0;}
  if(key=='s'){ Keys.s=0;}
+ if(key==' '){ Keys.space=0;}
  glutPostRedisplay();
 }
 
