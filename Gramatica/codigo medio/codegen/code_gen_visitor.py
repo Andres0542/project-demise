@@ -1,32 +1,21 @@
-from llvmlite import ir
 from gen.DemiseVisitor import DemiseVisitor
-
 
 class CodeGenVisitor(DemiseVisitor):
 
     def __init__(self):
-        self.i32 = ir.IntType(32)
-        self.i8 = ir.IntType(8)
-        self.module = ir.Module(name="programa")
+        # Listas para almacenar las distintas partes del archivo C
+        self.headers = ["#include <stdio.h>", "#include <stdint.h>", "#include <stdlib.h>", "#include <GL/glut.h>", "#include <math.h>", "#include <SDL2/SDL.h>", "#include <SDL2/SDL_mixer.h>"]
+        self.global_vars = []
+        self.main_body = []
 
-        main_tipo = ir.FunctionType(self.i32, [])
-        self.main_func = ir.Function(self.module, main_tipo, name="main")
-        bloque = self.main_func.append_basic_block("entry")
-        self.builder = ir.IRBuilder(bloque)
+    def _string_global(self, name: str, text: str) -> None:
+        # En C, las cadenas de texto se escapan y se guardan como const char* o char[]
+        # Usamos doble comilla para C y escapamos posibles comillas internas si fuera necesario
+        self.global_vars.append(f'const char* {name} = "{text}";')
 
-    def _string_global(self, name: str, text: str) -> ir.GlobalVariable:
-        raw = bytearray(text.encode("utf-8") + b"\0")
-        arr_type = ir.ArrayType(self.i8, len(raw))
-        global_var = ir.GlobalVariable(self.module, arr_type, name=name)
-        global_var.global_constant = True
-        global_var.initializer = ir.Constant(arr_type, raw)
-        return global_var
-
-    def _i32_global(self, name: str, value: int) -> ir.GlobalVariable:
-        global_var = ir.GlobalVariable(self.module, self.i32, name=name)
-        global_var.initializer = ir.Constant(self.i32, value)
-        global_var.linkage = "internal"
-        return global_var
+    def _i32_global(self, name: str, value: int) -> None:
+        # Usamos static int para emular el comportamiento 'internal' de LLVM
+        self.global_vars.append(f'static int32_t {name} = {value};')
 
     def visitMapDeclaration(self, ctx):
         grid = []
@@ -48,15 +37,14 @@ class CodeGenVisitor(DemiseVisitor):
         for fila in grid:
             valores.extend(fila)
 
-        total = len(valores)
-        array_type = ir.ArrayType(self.i32, total)
-        llvm_values = [ir.Constant(self.i32, v) for v in valores]
-        initializer = ir.Constant(array_type, llvm_values)
-
-        map_w = ir.GlobalVariable(self.module, array_type, name="mapW")
-        map_w.initializer = initializer
-        map_w.linkage = "internal"
-        map_w.align = 16
+        # Convertimos los valores de la matriz a un formato de inicialización de C: {1, 2, 3, ...}
+        valores_c = ", ".join(map(str, valores))
+        
+        # En C, podemos declarar el array plano directamente con alineación si lo deseas
+        # __attribute__((aligned(16))) es la sintaxis estándar en GCC/Clang para alineación
+        self.global_vars.append(
+            f'int mapW[] = {{ {valores_c} }};'
+        )
 
         self._i32_global("mapX", columnas)
         self._i32_global("mapY", filas)
@@ -66,9 +54,11 @@ class CodeGenVisitor(DemiseVisitor):
         self._string_global("music_path", path)
 
     def visitSpriteDeclaration(self, ctx):
-        sprite_type = ctx.SPRITE_TYPE().getText()
-        path = ctx.STRING_LITERAL().getText().strip("'")
-        self._string_global(f"sprite_{sprite_type}", path)
+        # Extraemos la ruta del archivo (ej: "sprites/heroe.h")
+        path = ctx.STRING_LITERAL().getText().strip("'\"")
+        
+        # En C, los include usan comillas dobles: #include "archivo.h"
+        self.headers.append(f'#include "{path}"')
 
     def visitNpcDeclaration(self, ctx):
         npc = ctx.ID().getText()
@@ -92,10 +82,34 @@ class CodeGenVisitor(DemiseVisitor):
         self._string_global("ui_path", path)
 
     def finalizar(self):
-        self.builder.ret(ir.Constant(self.i32, 0))
+        # Añade el retorno final de la función main
+        self.main_body.append("    return 0;")
 
-    def emitir(self, archivo="salida.ll"):
-        ir_texto = str(self.module)
-        with open(archivo, "w") as f:
-            f.write(ir_texto)
-        return ir_texto
+    def emitir(self, archivo="salida.c"):
+        # Construimos el código fuente final estructurando las partes de C
+        lineas_c = []
+        
+        # 1. Cabeceras
+        lineas_c.extend(self.headers)
+        lineas_c.append("") # Línea en blanco
+        
+        # 2. Variables Globales
+        lineas_c.extend(self.global_vars)
+        lineas_c.append("")
+        
+        # 3. Función Main
+        lineas_c.append("int main() {")
+        if self.main_body:
+            # Sangramos el cuerpo del main para que sea legible
+            lineas_c.extend(self.main_body)
+        else:
+            lineas_c.append("    return 0;")
+        lineas_c.append("}")
+
+        codigo_final = "\n".join(lineas_c)
+        
+        # Guardamos en el archivo .c
+        with open(archivo, "w", encoding="utf-8") as f:
+            f.write(codigo_final)
+            
+        return codigo_final
