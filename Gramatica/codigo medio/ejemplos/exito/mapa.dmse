@@ -1,0 +1,13 @@
+sprite wall -> 'wall.bmp'
+sprite floor -> 'floor.bmp'
+sprite sky -> 'sky.bmp'
+
+map ->
+[1 1 1 1 1 1 1 1 1 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 0 0 0 1 0 0 0 0 1]
+[1 0 0 0 0 0 0 0 0 1]
+[1 1 1 1 1 1 1 1 1 1];
+
+//Crea mapa basico
