@@ -1,4 +1,4 @@
-# project-demise
+![# project-demise](readme-resources/bitmap.png)
 
 Tecnologia de Raycasting simplificada incluso mas a la merced de usuarios de Python!!! Vuestra perturbada imaginacion es el limite
 
