@@ -1,7 +1,16 @@
-![# project-demise](readme-resources/bitmap.png)
+<div align="center">
+  <img src="readme-resources/bitmap.png" alt="# project-demise" />
+</div>
 
 Tecnologia de Raycasting simplificada incluso mas a la merced de usuarios de Python!!! Vuestra perturbada imaginacion es el limite
 
+# Disclaimer del motor
+
+El proyecto esta armado a base de un motor de raycasting sencillo implementado en C. Los tutoriales usados para armar la herramienta son los siguientes:
+
+* Build your Own Raycaster 1: https://youtu.be/gYRrGTC7GtA?si=MbBYVKE_anjTvlOl
+* Build your Own Raycaster 2: https://youtu.be/PC1RaETIx3Y?si=RP1vg7yldG_7naVo
+* Build your Own Raycaster 3: https://youtu.be/w0Bm4IA-Ii8?si=uYQjnmqwymSxPu9E
 # Disclaimer con codigo de Ejemplos
 
 Todos los codigos de RayCasting con Python son un intento mio siguiendo este tutorial de implementacion de raycasting en PyGame.
