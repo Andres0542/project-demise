@@ -21,6 +21,7 @@ Si te interesa saber mas del tema, puedes ver los tutoriales en:
 *  El ultimo ejemplo de RayCasting en donde el suelo se refleja es sacado directamente del Github en: https://github.com/FinFetChannel/RayCasting2021 (Ademas, tambien se han hecho uso de los sprites de prueba que proveia el chico en su GitHub para realizar los ejemplos)
 
 Tambien tener en cuenta que para el Trabajo Parcial. Las pruebas para el compilador en ANTLR4 se encuentran en la carpeta Gramatica. Y que en esta tambien se encuentra una carpeta llamada driver-copia en caso de que hallan problemas.
+
 ## 📋 Tabla de contenidos
 - [Disclaimer](#disclaimer-con-codigo-de-Ejemplos)
 - [Estructura general](#estructura-general)
@@ -43,7 +44,7 @@ Tambien tener en cuenta que para el Trabajo Parcial. Las pruebas para el compila
 - [Ejemplo completo](#ejemplo-completo)
 # Que es Project Demise?
 
-Es un lenguaje compilado con ANTLR y LLVM con el proposito de simplificar el proceso de desarrollo de niveles con raycasting.
+Es un lenguaje parseado con ANTLR y transpilado a C para despues pasarlo a codigo medio .ll y finalmente codigo objeto con la herramienta clang.
 Su gramatica es directa, de tal forma que el usuario solo tiene que declarar variables y asignar texturas para poder realizar una prueba sencilla.
 
 # Ejemplo breve 
@@ -72,6 +73,8 @@ raycasting_test
 Porque, aunque el raycasting sea una tecnica de simulacion 3D antigua, la gente sigue usandola para poder desarrollar sus primeros juegos en 3D de forma relativamente sencilla.
 Proytectos como Wolfenstein 3D y toda la saga clasica de Doom ha dejado una huella en la implementacion de esta sagrada herramienta.
 El problema viene cuando intentas realizar un proyecto como este en Python usando PyGame. El proceso puede tornarse a ser muy tedioso cuando intentas programar cosas que deberian ser basicas, y terminas confundiendote demasiado en configuraciones.
+
+![alt text](readme-resources/wolfenstein-3d_10.webp)
 
 # Quienes son nuestro publico con este proyecto?
 
