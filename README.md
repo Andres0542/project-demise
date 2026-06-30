@@ -74,7 +74,9 @@ Porque, aunque el raycasting sea una tecnica de simulacion 3D antigua, la gente 
 Proytectos como Wolfenstein 3D y toda la saga clasica de Doom ha dejado una huella en la implementacion de esta sagrada herramienta.
 El problema viene cuando intentas realizar un proyecto como este en Python usando PyGame. El proceso puede tornarse a ser muy tedioso cuando intentas programar cosas que deberian ser basicas, y terminas confundiendote demasiado en configuraciones.
 
-![alt text](readme-resources/wolfenstein-3d_10.webp)
+<div align="center">
+  <img src="readme-resources/wolfenstein-3d_10.webp" alt="# lol" />
+</div>
 
 # Quienes son nuestro publico con este proyecto?
 
