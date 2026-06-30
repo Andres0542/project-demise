@@ -9,8 +9,16 @@ Tecnologia de Raycasting simplificada incluso mas a la merced de usuarios de Pyt
 El proyecto esta armado a base de un motor de raycasting sencillo implementado en C. Los tutoriales usados para armar la herramienta son los siguientes:
 
 * Build your Own Raycaster 1: https://youtu.be/gYRrGTC7GtA?si=MbBYVKE_anjTvlOl
+* Repositorio del tutorial: https://github.com/3DSage/OpenGL-Raycaster_v1
+
 * Build your Own Raycaster 2: https://youtu.be/PC1RaETIx3Y?si=RP1vg7yldG_7naVo
+* Repositorio del tutorial: https://github.com/3DSage/OpenGL-Raycaster_v2
+
 * Build your Own Raycaster 3: https://youtu.be/w0Bm4IA-Ii8?si=uYQjnmqwymSxPu9E
+* Repositorio del tutorial: https://github.com/3DSage/OpenGL-Raycaster_v3
+
+Todo el codigo del motor en el que nos basamos en los tutoriales es de codigo abierto, con licencia del MIT.
+
 # Disclaimer con codigo de Ejemplos
 
 Todos los codigos de RayCasting con Python son un intento mio siguiendo este tutorial de implementacion de raycasting en PyGame.
@@ -23,7 +31,7 @@ Si te interesa saber mas del tema, puedes ver los tutoriales en:
 Tambien tener en cuenta que para el Trabajo Parcial. Las pruebas para el compilador en ANTLR4 se encuentran en la carpeta Gramatica. Y que en esta tambien se encuentra una carpeta llamada driver-copia en caso de que hallan problemas.
 
 ## 📋 Tabla de contenidos
-- [Disclaimer](#disclaimer-con-codigo-de-Ejemplos)
+- [Disclaimer](#Disclaimer del motor)
 - [Estructura general](#estructura-general)
 - [Declaraciones](#declaraciones)
   - [sprite](#sprite)
@@ -68,7 +76,7 @@ music -> 'Numb.mp3'
 // === Test de motor ===
 raycasting_test
 ```
-# Porque realizamos Porject Demise?
+# Porque realizamos Project Demise?
 
 Porque, aunque el raycasting sea una tecnica de simulacion 3D antigua, la gente sigue usandola para poder desarrollar sus primeros juegos en 3D de forma relativamente sencilla.
 Proytectos como Wolfenstein 3D y toda la saga clasica de Doom ha dejado una huella en la implementacion de esta sagrada herramienta.
@@ -80,8 +88,7 @@ El problema viene cuando intentas realizar un proyecto como este en Python usand
 
 # Quienes son nuestro publico con este proyecto?
 
-Esperamos que con este proyecto podamos alcanzar a aquellos modders de la comunidad de Doom y del raycasting en general para darle una probada a nuestra herramienta. Todos los que esten interesados en desarrollar su primer juego 3D son tambien bienvenidos a este dominio sagrado.
-
+Esperamos poder alcanzar a todas esas personas deseosas por realizar su primer juego en 3D, pero que sin embargo no busquen complicarlse mucho la vida codificando las diversas herramientas que tiene un juego 3D. Todos aquellos que busquen desarrollar nuevas experiencias son bienvenidos a este dominio sagrado.
 
 
 ---
